@@ -1,62 +1,86 @@
-'use client'
-
-const gifts = [
-  {
-    id: 1,
-    name: 'Jogo de Panelas',
-    price: 300
-  },
-  {
-    id: 2,
-    name: 'Air Fryer',
-    price: 500
-  }
-]
+import GiftsGrid from "@/components/gifts/GiftsGrid";
 
 export default function PresentesPage() {
-
-  async function buyGift(giftId: number) {
-
-    const response = await fetch('/api/checkout', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        giftId
-      })
-    })
-
-    const data = await response.json()
-
-    window.location.href = data.checkoutUrl
-  }
-
   return (
-    <div className="p-10">
-      <h1 className="text-3xl mb-6">
-        Lista de Presentes
-      </h1>
+    <main className="min-h-screen bg-[#ece7e2]">
+      {/* HERO BLUR BACKGROUND */}
+      <div
+        className="
+          fixed inset-0 -z-10
+          bg-cover bg-center
+          blur-xl scale-110 opacity-40
+        "
+        style={{
+          backgroundImage: "url('/images/casal-bg.jpg')",
+        }}
+      />
 
-      <div className="space-y-4">
-        {gifts.map(gift => (
-          <div
-            key={gift.id}
-            className="border p-4 rounded"
-          >
-            <h2>{gift.name}</h2>
-
-            <p>R$ {gift.price}</p>
-
-            <button
-              onClick={() => buyGift(gift.id)}
-              className="bg-black text-white px-4 py-2 rounded cursor-pointer"
+      {/* NAVBAR */}
+      <header
+        className="
+          sticky top-0 z-40
+          border-b border-black/5
+          bg-[#f5f2ee]/90
+          backdrop-blur-md
+        "
+      >
+        <div
+          className="
+            mx-auto flex h-24 max-w-[1600px]
+            items-center justify-between
+            px-6 lg:px-12
+          "
+        >
+          {/* LOGO */}
+          <div className="flex items-center gap-4">
+            <div
+              className="
+                flex h-14 w-14 items-center justify-center
+                rounded-full border border-black/20
+                text-xl
+              "
             >
-              Presentear
-            </button>
+              AG
+            </div>
           </div>
-        ))}
-      </div>
-    </div>
-  )
+
+          {/* MENU */}
+          <nav className="hidden items-center gap-12 lg:flex">
+            <a className="text-sm uppercase tracking-[0.3em]">Início</a>
+            <a className="text-sm uppercase tracking-[0.3em]">
+              Confirme presença
+            </a>
+
+            <a
+              className="
+                font-cormorant
+                text-4xl italic
+              "
+            >
+              presentes
+            </a>
+
+            <a className="text-sm uppercase tracking-[0.3em]">
+              Dicas e instruções
+            </a>
+
+            <a className="text-sm uppercase tracking-[0.3em]">
+              Álbum de fotos
+            </a>
+
+            <a className="text-sm uppercase tracking-[0.3em]">
+              Nossa história
+            </a>
+          </nav>
+        </div>
+      </header>
+
+      {/* CONTENT */}
+      <section className="px-6 py-20 lg:px-12">
+        <div className="mx-auto max-w-[1400px]">
+          <GiftsGrid />
+        </div>
+      </section>
+    </main>
+  );
 }
