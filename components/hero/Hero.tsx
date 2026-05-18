@@ -14,14 +14,15 @@ export default function Hero() {
 
 function Content() {
   return (
-    <div className="relative text-white w-full justify-center items-center">
-      <h1 className="font-cormorant after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:h-px after:w-1/12 after:bg-white">
+    <div className="text-white w-full justify-center items-center">
+      <h1 className="relative font-cormorant mb-3 pb-3 after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:h-px after:w-1/12 after:bg-white">
         <span>AURORA</span><span> &amp; </span><span>GEORGE</span>
       </h1>
-      <br /><br /><br /><br /><br />
-      <h2>nas ditas linhas em que nos encontramos</h2>
-      <span>08 DE AGOSTO DE 2026</span>
-      <span> GO</span>
+      <br />
+      <h2 className="font-cormorant-700 italic">nas ditas linhas em que nos encontramos</h2>
+      <br />
+      <span className="text-xl">08 DE AGOSTO DE 2026</span>
+      <span className="text-xl"> | GO</span>
     </div>
   );
 }
@@ -62,13 +63,3 @@ function Countdown() {
   );
 
 }
-
-// background: url(/countdown/ripped-bg-3.png);
-// background-color: transparent;
-// background-size: contain;
-// background-repeat: no-repeat;
-// background-position: bottom;
-// position: absolute;
-// content: "";
-// width: 100%;
-// height: 100%;

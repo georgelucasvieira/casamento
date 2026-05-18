@@ -8,16 +8,18 @@ import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
-  const [isTextWhite, setIsTextWhite] = useState(true)
-
+  const currentPath = usePathname()
+  
   const paths = {
     home: "/",
     presentes: "/presentes",
     presenca: "/confirmar-presenca",
     fotos: "/fotos",
   }
-
-  const currentPath = usePathname()
+  
+  const shouldStartWhite = currentPath === paths.home
+  
+  const [isTextWhite, setIsTextWhite] = useState(shouldStartWhite)
 
   useEffect(() => {
     if (currentPath === paths.home) {
@@ -34,9 +36,6 @@ export default function Navbar() {
       }
     }
 
-    if (currentPath === paths.presentes) {
-      setIsTextWhite(false)
-    }
   }, [currentPath])
 
   return (

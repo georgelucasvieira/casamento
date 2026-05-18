@@ -20,11 +20,11 @@ body {
 }
 
 h1 {
-  @apply text-7xl font-bold;
+  @apply text-[84px];
 }
 
 h2 {
-  @apply text-2xl font-semibold;
+  @apply text-4xl;
 }
 
 .font-cormorant {
