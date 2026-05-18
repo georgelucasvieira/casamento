@@ -20,9 +20,25 @@ body {
 }
 
 h1 {
-  @apply text-5xl font-bold;
+  @apply text-7xl font-bold;
 }
 
 h2 {
   @apply text-2xl font-semibold;
 }
+
+.font-cormorant {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 500;
+}
+
+.font-cormorant-300 {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 300;
+}
+
+.font-cormorant-700 {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 700;
+}
+
