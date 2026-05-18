@@ -11,7 +11,7 @@ export default function GiftCard({
     <div
       className="
         group relative overflow-hidden
-        rounded-[2rem]
+        rounded-4xl
         border border-black/5
         bg-[#f5f2ee]/90
         p-8

@@ -36,7 +36,7 @@ export default function GiftModal({
           <img
             src={gift.image}
             alt={gift.title}
-            className="max-h-[600px] object-contain"
+            className="max-h-150 object-contain"
           />
         </div>
 

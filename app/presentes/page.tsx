@@ -26,7 +26,7 @@ export default function PresentesPage() {
       >
         <div
           className="
-            mx-auto flex h-24 max-w-[1600px]
+            mx-auto flex h-24 max-w-400
             items-center justify-between
             px-6 lg:px-12
           "
@@ -77,7 +77,7 @@ export default function PresentesPage() {
 
       {/* CONTENT */}
       <section className="px-6 py-20 lg:px-12">
-        <div className="mx-auto max-w-[1400px]">
+        <div className="mx-auto max-w-350">
           <GiftsGrid />
         </div>
       </section>
