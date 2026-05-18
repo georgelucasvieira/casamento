@@ -10,18 +10,7 @@ export default function Home() {
       <Hero/>
       <SaveTheDate/>
 
-      <div className="w-full h-200"></div>
-      <main className="w-full text-center text-black">
-        <section className="w-full h-56 flex flex-col justify-center bg-white"><h2>CONTENT</h2></section>
-        <section className="w-full h-56 flex flex-col justify-center bg-white"><h2>CONTENT</h2></section>
-        <section className="w-full h-56 flex flex-col justify-center bg-white"><h2>CONTENT</h2></section>
-        <section className="w-full h-56 flex flex-col justify-center bg-white"><h2>CONTENT</h2></section>
-        <section className="w-full h-56 flex flex-col justify-center bg-white"><h2>CONTENT</h2></section>
-        <section className="w-full h-56 flex flex-col justify-center bg-white"><h2>CONTENT</h2></section>
-        <section className="w-full h-56 flex flex-col justify-center bg-white"><h2>CONTENT</h2></section>
-
-      </main>
-      <footer></footer>
+    <div className="w-full h-400 bg-white"/>
     </>
   );
 }
