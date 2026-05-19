@@ -15,12 +15,21 @@ export default function FlipCard({
 }: FlipCardProps) {
   const [flipped, setFlipped] = useState(false);
   const [currentImage, setCurrentImage] = useState(image);
+  const [currentImage2, setCurrentImage2] = useState(image);
+
 
   const images = [
     image,
     "/images/ptf-74.jpg",
     "/images/ptf-102.jpg",
     "/images/ptf-132.jpg",
+    "/images/ptf-102.jpg",
+    "/images/ptf-74.jpg",
+    "/images/ptf-132.jpg",
+    "/images/ptf-6.jpg",
+    "/images/ptf-6.jpg",
+    "/images/ptf-74.jpg",
+    "/images/ptf-102.jpg",
   ];
 
   useEffect(() => {
@@ -29,15 +38,16 @@ export default function FlipCard({
     const startLoop = (delay: number) => {
       timeout = setTimeout(() => {
         setFlipped((prev) => !prev);
-
-        // Troca imagem aleatoriamente
-        const randomImage =
-          images[Math.floor(Math.random() * images.length)];
+        const randomIndex = Math.floor(Math.random() * images.length);
+        console.log(`randomIndex1: ${randomIndex} | randomIndex2: ${images.length - randomIndex}`);
+        const randomImage = images[randomIndex];
+        const randomImage2 = images[images.length - randomIndex];
 
         setCurrentImage(randomImage);
+        setCurrentImage2(randomImage2);
 
         // Próximo flip com tempo aleatório
-        const nextRandomDelay = Math.random() * 3500 + 2000;
+        const nextRandomDelay = Math.random() * 3500 + 4000;
 
         startLoop(nextRandomDelay);
       }, delay);
@@ -63,7 +73,7 @@ export default function FlipCard({
           className="
             absolute inset-0
             overflow-hidden
-            rounded-t-[12rem]
+            rounded-[12rem]
             backface-hidden
           "
         >
@@ -78,27 +88,17 @@ export default function FlipCard({
         <div
           className="
             absolute inset-0
-            flex items-center justify-center
-            rounded-t-[12rem]
-            border border-black/10
-            bg-[#f4f1ed]
+            overflow-hidden
+            rounded-[12rem]
             rotate-y-180
             backface-hidden
           "
         >
-          <div className="text-center">
-            <p className="mb-4 text-sm uppercase tracking-[0.5em] text-black/40">
-              Save The Date
-            </p>
-
-            <h3 className="font-cormorant text-6xl text-black">
-              29
-            </h3>
-
-            <p className="mt-2 uppercase tracking-[0.3em] text-black/60">
-              Junho 2026
-            </p>
-          </div>
+          <img
+            src={currentImage2}
+            alt="Couple"
+            className="h-full w-full object-cover grayscale"
+          />
         </div>
       </div>
 

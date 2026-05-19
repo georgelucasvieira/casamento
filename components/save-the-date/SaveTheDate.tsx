@@ -29,21 +29,21 @@ export default function SaveTheDateSection() {
         {/* CARDS */}
         <div className="flex flex-col items-center gap-12 lg:flex-row lg:gap-10">
           <FlipCard
-            image="/images/ptf-1.jpg"
+            image="/images/ptf-6.jpg"
             number="01."
+            initialDelay={500}
+          />
+
+          <FlipCard
+            image="/images/ptf-74.jpg"
+            number="02."
             initialDelay={1000}
           />
 
           <FlipCard
-            image="/images/ptf-2.jpg"
-            number="02."
-            initialDelay={2000}
-          />
-
-          <FlipCard
-            image="/images/ptf-3.jpg"
+            image="/images/ptf-102.jpg"
             number="03."
-            initialDelay={3000}
+            initialDelay={1500}
           />
         </div>
       </div>
