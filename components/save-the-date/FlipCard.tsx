@@ -49,7 +49,7 @@ export default function FlipCard({
   }, [initialDelay]);
 
   return (
-    <div className="group relative h-[34rem] w-[20rem] perspective-[2000px]">
+    <div className="group relative h-136 w-[20rem] perspective-[2000px]">
       <div
         className={`
           relative h-full w-full
@@ -103,12 +103,12 @@ export default function FlipCard({
       </div>
 
       {/* NUMBER */}
-      <span className="absolute -bottom-4 right-[-2rem] font-cormorant text-7xl text-black">
+      <span className="absolute -bottom-4 -right-8 font-cormorant text-7xl text-black">
         {number}
       </span>
 
       {/* GOLD LINE */}
-      <div className="absolute left-1/2 top-full h-32 w-[1px] -translate-x-1/2 bg-[#c8a46b]" />
+      <div className="absolute left-1/2 top-full h-32 w-px -translate-x-1/2 bg-[#c8a46b]" />
     </div>
   );
 }
