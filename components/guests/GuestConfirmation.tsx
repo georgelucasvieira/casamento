@@ -59,43 +59,29 @@ export default function GuestConfirmation({ initialGuests }: GuestConfirmationPr
   };
 
   return (
-    <div className="rounded-[2.5rem] bg-[#f5f2ee] p-10 shadow-[0_20px_70px_rgba(0,0,0,0.08)]">
-      <div className="max-w-3xl">
-        <p className="text-sm uppercase tracking-[0.35em] text-black/50">
-          Confirmação de presença
-        </p>
-        <h1 className="mt-6 text-5xl font-semibold text-black">
-          Quem é você?
-        </h1>
-        <p className="mt-4 text-lg text-black/70">
-          Digite seu nome e escolha o convidado para confirmar sua presença.
-        </p>
-
+    <div className="rounded-[2.5rem] p-10 font-cormorant">
+      <div className="max-w-3xl mx-auto">
         <div className="mt-10">
-          <label className="block text-sm font-semibold text-black/75">
-            Buscar por nome
-          </label>
           <input
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            className="mt-4 w-full rounded-3xl border border-black/10 bg-white/90 px-6 py-5 text-lg outline-none transition focus:border-black"
-            placeholder="Digite o nome do convidado"
+            className="mt-4 w-full rounded-3xl px-6 py-5 text-5xl outline-none caret-[#d29e41] text-center"
+            placeholder="Digite seu nome"
           />
 
-          <div className="mt-4 max-h-72 overflow-y-auto rounded-3xl border border-black/10 bg-white/90 p-4 shadow-sm">
+          <div className="mt-4 max-h-72 overflow-y-auto rounded-3xl p-4">
             {query.trim().length === 0 ? (
-              <p className="text-sm text-black/50">
-                Digite ao menos um caractere para buscar seu nome.
+              <p className="text-xl text-black/50">
               </p>
             ) : suggestions.length === 0 ? (
-              <p className="text-sm text-black/50">Nenhum convidado encontrado.</p>
+              <p className="text-xl text-black/50 text-center">Convidado não encontrado.</p>
             ) : (
               suggestions.slice(0, 8).map((guest) => (
                 <button
                   key={guest.id}
                   type="button"
                   onClick={() => handleSelect(guest)}
-                  className="mb-3 block w-full rounded-3xl px-4 py-3 text-left transition hover:bg-black/5"
+                  className="mx-auto mb-3 block w-6/10 rounded-3xl px-4 py-3 text-left text-2xl transition hover:bg-black/5 cursor-pointer"
                 >
                   <span className="font-medium text-black">{guest.name}</span>
                   <span className="ml-3 text-sm text-black/50">
@@ -109,18 +95,18 @@ export default function GuestConfirmation({ initialGuests }: GuestConfirmationPr
 
         {selectedGuest && (
           <div className="mt-10 rounded-[2rem] bg-white p-8 shadow-[0_20px_50px_rgba(0,0,0,0.08)]">
-            <p className="text-sm uppercase tracking-[0.25em] text-black/40">
-              Convidado selecionado
+            <p className="text-sm uppercase tracking-[0.25em] text-black/40 font-bold">
+              Convidado
             </p>
-            <h2 className="mt-4 text-4xl font-semibold text-black">
+            <h2 className="mt-4 text-4xl text-center font-semibold text-black">
               {selectedGuest.name}
             </h2>
-            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+            <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <button
                 type="button"
                 onClick={() => handleSubmit(true)}
                 disabled={isSaving}
-                className="rounded-full bg-black px-8 py-4 text-lg font-semibold text-white transition hover:bg-black/90 disabled:cursor-not-allowed disabled:opacity-50"
+                className="rounded-full bg-black px-8 py-4 text-lg font-semibold text-white transition hover:bg-black/90 cursor-pointer"
               >
                 Confirmar presença
               </button>
@@ -128,7 +114,7 @@ export default function GuestConfirmation({ initialGuests }: GuestConfirmationPr
                 type="button"
                 onClick={() => handleSubmit(false)}
                 disabled={isSaving}
-                className="rounded-full border border-black px-8 py-4 text-lg font-semibold text-black transition hover:bg-black hover:text-white disabled:cursor-not-allowed disabled:opacity-50"
+                className="rounded-full border border-black px-8 py-4 text-lg font-semibold text-black transition hover:bg-black hover:text-white cursor-pointer"
               >
                 Não comparecerei
               </button>
