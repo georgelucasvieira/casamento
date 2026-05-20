@@ -64,7 +64,12 @@ export default function GuestConfirmation({ initialGuests }: GuestConfirmationPr
         <div className="mt-10">
           <input
             value={query}
-            onChange={(event) => setQuery(event.target.value)}
+            onChange={(event) => {
+              const val = event.target.value;
+              setQuery(val);
+              if (selectedGuest) setSelectedGuest(null);
+              setStatusMessage(null);
+            }}
             className="mt-4 w-full rounded-3xl px-6 py-5 text-5xl outline-none caret-[#d29e41] text-center"
             placeholder="Digite seu nome"
           />
