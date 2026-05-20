@@ -3,7 +3,7 @@ import FlipCard from "./FlipCard";
 export default function SaveTheDateSection() {
   return (
     <section className="relative overflow-hidden bg-white px-10 py-32 lg:px-24">
-      <div className="mx-auto flex md:flex-col-reverse items-center max-w-400 gap-24 lg:items-center lg:justify-between">
+      <div className="mx-auto flex md:flex-col-reverse items-center max-w-400 gap-24 md:items-center md:justify-between">
         {/* LEFT TEXT */}
         <div>
           <div className="text-[10rem] leading-45 font-cormorant-300 bg-linear-to-l from-[#eee] to-[#111] bg-clip-text text-transparent">
