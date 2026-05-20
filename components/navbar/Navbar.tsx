@@ -48,7 +48,7 @@ export default function Navbar() {
               ? "text-white"
               : "text-black"
             }
-            text-2xl font-light
+            text-2xl font-light font-cormorant
           `}>
             AG
           </div>
