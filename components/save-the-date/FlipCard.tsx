@@ -107,8 +107,6 @@ export default function FlipCard({
         {number}
       </span>
 
-      {/* GOLD LINE */}
-      <div className="absolute left-1/2 top-full h-32 w-px -translate-x-1/2 bg-[#c8a46b]" />
     </div>
   );
 }
