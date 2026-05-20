@@ -13,7 +13,7 @@ export default function GiftCard({
         group relative overflow-hidden
         rounded-4xl
         border border-black/5
-        bg-[#f5f2ee]/90
+        bg-[#ffffff70]
         p-8
         shadow-[0_10px_40px_rgba(0,0,0,0.08)]
         backdrop-blur-md
