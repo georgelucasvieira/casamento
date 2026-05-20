@@ -14,10 +14,10 @@ export default function Navbar() {
     home: "/",
     presentes: "/presentes",
     presenca: "/confirmar-presenca",
-    fotos: "/fotos",
-  }
-  
-  const shouldStartWhite = currentPath === paths.home
+    localizacao: "/localizacao",
+  };
+
+  const shouldStartWhite = currentPath === paths.home;
   
   const [isTextWhite, setIsTextWhite] = useState(shouldStartWhite)
 
@@ -77,8 +77,21 @@ export default function Navbar() {
               `}
             >Presentes</a>
 
-            <a href={paths.fotos} className="pt-2">Fotos</a>
-            <a href={paths.home} className="pt-2">História</a>
+            <a href={paths.presenca}
+              className={`
+                ${currentPath === paths.presenca ?
+                  "font-cormorant-700 italic text-4xl lowercase" :
+                  "regular pt-2"}
+              `}
+            >Confirmação</a>
+
+            <a href={paths.localizacao}
+              className={`
+                ${currentPath === paths.localizacao ?
+                  "font-cormorant-700 italic text-4xl lowercase" :
+                  "regular pt-2"}
+              `}
+            >Localização</a>
           </nav>
 
           {/* Mobile Button */}
