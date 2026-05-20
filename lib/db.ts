@@ -1,12 +1,28 @@
 import dotenv from "dotenv";
+import fs from "fs";
+import path from "path";
 import { createClient } from "@libsql/client";
 
 dotenv.config({ path: ".env.local" });
 
-export const db = createClient({
-  url: process.env.TURSO_DATABASE_URL!,
-  authToken: process.env.TURSO_AUTH_TOKEN!,
-});
+const dbDir = path.join(process.cwd(), "data");
+if (!fs.existsSync(dbDir)) {
+  fs.mkdirSync(dbDir, { recursive: true });
+}
+
+const dbFile = path.join(dbDir, "casamento.db");
+const useLocalDb = process.env.USE_LOCAL_DB !== "false";
+
+export const db = createClient(
+  useLocalDb
+    ? { url: `file:${dbFile}` }
+    : {
+        url: process.env.TURSO_DATABASE_URL!,
+        authToken: process.env.TURSO_AUTH_TOKEN!,
+      }
+);
+
+console.log(useLocalDb ? "Utilizando banco de dados local" : "Utilizando banco de dados Turso");
 
 export type Gift = {
   id: number;
@@ -59,27 +75,8 @@ const normalizeGift = (row: any) => {
   };
 };
 
-async function ensureSchema() {
-  await db.execute(`
-    CREATE TABLE IF NOT EXISTS guests (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      name TEXT NOT NULL,
-      confirmed INTEGER DEFAULT 0
-    )
-  `);
-
-  await db.execute(`
-    CREATE TABLE IF NOT EXISTS gifts (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      name TEXT NOT NULL,
-      price REAL NOT NULL,
-      purchased INTEGER DEFAULT 0
-    )
-  `);
-}
 
 export async function getGifts() {
-  await ensureSchema();
   const result = await db.execute(
     "SELECT id, name, price, purchased FROM gifts ORDER BY id"
   );
@@ -87,7 +84,6 @@ export async function getGifts() {
 }
 
 export async function getGuests() {
-  await ensureSchema();
   const result = await db.execute(
     "SELECT id, name, confirmed FROM guests ORDER BY name"
   );

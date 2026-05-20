@@ -43,3 +43,5 @@ next-env.d.ts
 # images
 public/images/*
 public/fonts/*
+
+data/*
