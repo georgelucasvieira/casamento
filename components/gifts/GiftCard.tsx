@@ -27,6 +27,8 @@ export default function GiftCard({
         <img
           src={gift.image}
           alt={gift.title}
+          loading="lazy"
+          decoding="async"
           className="
             h-56 w-full object-cover
             transition-transform duration-700

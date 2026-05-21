@@ -76,11 +76,84 @@ const normalizeGift = (row: any) => {
 };
 
 
+async function ensureSchema() {
+  await db.execute(`
+    CREATE TABLE IF NOT EXISTS guests (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT NOT NULL,
+      confirmed INTEGER DEFAULT 0
+    )
+  `);
+
+  await db.execute(`
+    CREATE TABLE IF NOT EXISTS gifts (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT NOT NULL,
+      price REAL NOT NULL,
+      purchased INTEGER DEFAULT 0,
+      image TEXT
+    )
+  `);
+
+  await db.execute(`
+    CREATE TABLE IF NOT EXISTS hero_slots (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      slot TEXT NOT NULL,
+      position INTEGER DEFAULT 0,
+      image TEXT,
+      UNIQUE(slot, position)
+    )
+  `);
+
+  // attempt to add image column if missing (no IF NOT EXISTS for ALTER in sqlite)
+  try {
+    await db.execute("ALTER TABLE gifts ADD COLUMN image TEXT");
+  } catch (e) {
+    // ignore if column exists
+  }
+}
+
 export async function getGifts() {
+  await ensureSchema();
   const result = await db.execute(
-    "SELECT id, name, price, purchased FROM gifts ORDER BY id"
+    "SELECT id, name, price, purchased, image FROM gifts ORDER BY id"
   );
   return result.rows.map(normalizeGift);
+}
+
+export async function createGift(name: string, price: number, image?: string) {
+  await ensureSchema();
+  const res = await db.execute(
+    "INSERT INTO gifts (name, price, purchased, image) VALUES (?, ?, 0, ?)",
+    [name, price, image || null]
+  );
+  const last = res.lastInsertRowid;
+  return last ? Number(last) : 0;
+}
+
+export async function getHeroSlots() {
+  await ensureSchema();
+  const rs = await db.execute("SELECT slot, position, image FROM hero_slots ORDER BY slot, position");
+  const rows = rs.rows;
+  const slots: Record<string, Array<{ position: number; image?: string }>> = {};
+  for (const r of rows) {
+    const slotName = String(r.slot);
+    const pos = typeof r.position === "bigint" ? Number(r.position) : Number(r.position ?? 0);
+    const img = r.image as string | null | undefined;
+    if (!slots[slotName]) slots[slotName] = [];
+    slots[slotName].push({ position: pos, image: img ?? undefined });
+  }
+  return slots;
+}
+
+export async function updateHeroSlot(slot: string, position: number, image?: string) {
+  await ensureSchema();
+  // upsert
+  await db.execute(
+    `INSERT INTO hero_slots(slot, position, image) VALUES (?, ?, ?)
+     ON CONFLICT(slot, position) DO UPDATE SET image = excluded.image`,
+    [slot, position, image || null]
+  );
 }
 
 export async function getGuests() {

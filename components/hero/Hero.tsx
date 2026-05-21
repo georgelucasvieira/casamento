@@ -3,11 +3,15 @@
 import { Countdown } from "./Countdown";
 import SlideShow from "./SlideShow";
 
-export default function Hero() {
+type HeroProps = {
+  heroImages?: string[];
+};
+
+export default function Hero({ heroImages }: HeroProps) {
   return (
     <>
       <section className="flex flex-col w-full h-screen justify-center text-center items-center">
-        <SlideShow />
+        <SlideShow images={heroImages} />
         <Content />
       </section>
       <Countdown />

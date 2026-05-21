@@ -3,34 +3,23 @@
 import { useEffect, useState } from "react";
 
 interface FlipCardProps {
-  image: string;
+  images: string[];
   number: string;
   initialDelay?: number;
 }
 
 export default function FlipCard({
-  image,
+  images,
   number,
   initialDelay = 0,
 }: FlipCardProps) {
   const [flipped, setFlipped] = useState(false);
-  const [currentImage, setCurrentImage] = useState(image);
-  const [currentImage2, setCurrentImage2] = useState(image);
+  const initialImage = images[0] ?? "/images/ptf-6.jpg";
+  const secondImage = images[1] ?? initialImage;
+  const [currentImage, setCurrentImage] = useState(initialImage);
+  const [currentImage2, setCurrentImage2] = useState(secondImage);
 
-
-  const images = [
-    image,
-    "/images/ptf-74.jpg",
-    "/images/ptf-102.jpg",
-    "/images/ptf-132.jpg",
-    "/images/ptf-102.jpg",
-    "/images/ptf-74.jpg",
-    "/images/ptf-132.jpg",
-    "/images/ptf-6.jpg",
-    "/images/ptf-6.jpg",
-    "/images/ptf-74.jpg",
-    "/images/ptf-102.jpg",
-  ];
+  const imagePool = images.length > 0 ? images : ["/images/ptf-6.jpg", "/images/ptf-74.jpg", "/images/ptf-102.jpg"];
 
   useEffect(() => {
     let timeout: NodeJS.Timeout;
@@ -38,17 +27,14 @@ export default function FlipCard({
     const startLoop = (delay: number) => {
       timeout = setTimeout(() => {
         setFlipped((prev) => !prev);
-        const randomIndex = Math.floor(Math.random() * images.length);
-        console.log(`randomIndex1: ${randomIndex} | randomIndex2: ${images.length - randomIndex}`);
-        const randomImage = images[randomIndex];
-        const randomImage2 = images[images.length - randomIndex];
+        const pool = imagePool.length > 0 ? imagePool : [initialImage, secondImage];
+        const randomIndex1 = Math.floor(Math.random() * pool.length);
+        const randomIndex2 = (randomIndex1 + 1) % pool.length;
 
-        setCurrentImage(randomImage);
-        setCurrentImage2(randomImage2);
+        setCurrentImage(pool[randomIndex1]);
+        setCurrentImage2(pool[randomIndex2]);
 
-        // Próximo flip com tempo aleatório
         const nextRandomDelay = Math.random() * 3500 + 4000;
-
         startLoop(nextRandomDelay);
       }, delay);
     };
@@ -56,7 +42,7 @@ export default function FlipCard({
     startLoop(initialDelay);
 
     return () => clearTimeout(timeout);
-  }, [initialDelay]);
+  }, [initialDelay, imagePool, initialImage, secondImage]);
 
   return (
     <div className="group relative h-136 w-[18rem] perspective-[2000px]">
