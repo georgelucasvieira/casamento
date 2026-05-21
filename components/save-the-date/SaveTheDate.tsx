@@ -19,9 +19,9 @@ export default function SaveTheDateSection({ flipcards }: SaveTheDateProps) {
 
   return (
     <section className="relative overflow-hidden bg-white px-10 py-32 lg:px-24">
-      <div className="mx-auto max-w-400
-        flex items-center gap-24
-        md:flex-col-reverse md:items-start md:justify-between
+      <div className="mx-auto max-w-100
+        flex flex-col-reverse items-center gap-24
+        md:items-start md:justify-between
         lg:flex-row">
         {/* LEFT TEXT */}
         <div>

@@ -32,7 +32,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet"/>
       </head>
-      <body className="min-h-full min-w-full">{children}</body>
+      <body className="min-h-full min-w-full max-w-screen">{children}</body>
     </html>
   );
 }

@@ -21,8 +21,8 @@ export default function Hero({ heroImages }: HeroProps) {
 
 function Content() {
   return (
-    <div className="text-white w-full justify-center items-center">
-      <h1 className="relative font-cormorant mb-3 pb-3 after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:h-px after:w-1/12 after:bg-white">
+    <div className="text-white w-full flex flex-col justify-center items-center">
+      <h1 className="md:text-[84px] flex flex-col md:flex-row relative font-cormorant mb-3 pb-3 after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:h-px after:w-1/12 after:bg-white">
         <span>AURORA</span><span> &amp; </span><span>GEORGE</span>
       </h1>
       <br />

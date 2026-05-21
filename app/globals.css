@@ -20,11 +20,11 @@ body {
 }
 
 h1 {
-  @apply text-[84px];
+  @apply text-[56px] md:text-[84px];
 }
 
 h2 {
-  @apply text-4xl;
+  @apply text-xl md:text-4xl;
 }
 
 .font-cormorant {
