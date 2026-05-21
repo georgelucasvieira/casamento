@@ -2,10 +2,9 @@ import { usePathname } from "next/navigation";
 
 type Props = {
   isOpen: boolean;
-  isTextWhite?: boolean;
 };
 
-export default function MobileMenu({ isOpen, isTextWhite=true }: Props) {
+export default function MobileMenu({ isOpen }: Props) {
 
   var paths = {
     home: "/",
@@ -23,7 +22,6 @@ export default function MobileMenu({ isOpen, isTextWhite=true }: Props) {
         fixed inset-0 z-40 md:hidden
         overflow-hidden
         transition-all duration-700 ease-in-out
-        
         ${isOpen
           ? "pointer-events-auto"
           : "pointer-events-none"
@@ -34,7 +32,7 @@ export default function MobileMenu({ isOpen, isTextWhite=true }: Props) {
       <div
         className={`
           absolute inset-0
-          bg-black/90 backdrop-blur-md
+          bg-black/50 backdrop-blur-md
           origin-top
           transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]
 
@@ -50,10 +48,6 @@ export default function MobileMenu({ isOpen, isTextWhite=true }: Props) {
         className={`
           relative z-10
           flex h-full flex-col items-center justify-center gap-10
-          ${isTextWhite
-            ? "text-white"
-            : "text-black"
-          }
           text-white 
           
           uppercase tracking-[0.2em]

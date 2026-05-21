@@ -1,10 +1,12 @@
 type Props = {
   isOpen: boolean;
+  isTextWhite: boolean;
   toggle: () => void;
 };
 
 export default function MenuToggle({
   isOpen,
+  isTextWhite,
   toggle,
 }: Props) {
   return (
@@ -14,22 +16,25 @@ export default function MenuToggle({
     >
       <span
         className={`
-          h-0.5 w-7 bg-white transition-all duration-300
-          ${isOpen ? "translate-y-1.5 rotate-45" : ""}
+          h-0.5 w-7 transition-all duration-300
+          ${isTextWhite ? "bg-white " : "bg-black"} 
+          ${isOpen ? "translate-y-1.5 rotate-45 bg-white" : ""}
         `}
       />
 
       <span
         className={`
-          h-0.5 w-7 bg-white transition-all duration-300
-          ${isOpen ? "opacity-0" : ""}
+          h-0.5 w-7 transition-all duration-300
+          ${isTextWhite ? "bg-white" : "bg-black"} 
+          ${isOpen ? "opacity-0 bg-white" : ""}
         `}
       />
 
       <span
         className={`
-          h-0.5 w-7 bg-white transition-all duration-300
-          ${isOpen ? "-translate-y-1.5 -rotate-45" : ""}
+          h-0.5 w-7 transition-all duration-300
+          ${isTextWhite ? "bg-white " : "bg-black"} 
+          ${isOpen ? "-translate-y-1.5 -rotate-45 bg-white" : ""}
         `}
       />
     </button>

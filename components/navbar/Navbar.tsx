@@ -41,10 +41,16 @@ export default function Navbar() {
   return (
     <>
       <header className="fixed top-0 left-0 z-50 w-full">
-        <div className="flex items-center justify-between px-6 py-6 lg:px-12">
+        <div className={`
+            ${isTextWhite
+              ? ""
+              : "lg:bg-white"
+            }
+            flex items-center justify-between px-6 py-6 lg:px-12
+          `}>
           {/* Logo */}
           <div className={`
-            ${isTextWhite
+            ${isTextWhite || isOpen
               ? "text-white"
               : "text-black"
             }
@@ -98,6 +104,7 @@ export default function Navbar() {
           <div className="md:hidden">
             <MenuToggle
               isOpen={isOpen}
+              isTextWhite={isTextWhite}
               toggle={() => setIsOpen(!isOpen)}
             />
           </div>
