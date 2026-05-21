@@ -1,6 +1,7 @@
 import Hero from "@/components/hero/Hero";
 import Navbar from "@/components/navbar/Navbar";
 import SaveTheDate from "@/components/save-the-date/SaveTheDate";
+import CallToActions from "@/components/CallToActions";
 import { getHeroSlots } from "@/lib/db";
 
 export default async function Home() {
@@ -17,7 +18,7 @@ export default async function Home() {
       <Navbar />
       <Hero heroImages={heroImages} />
       <SaveTheDate flipcards={flipcards} />
-
+      <CallToActions />
       <div className="w-full h-400 bg-white" />
     </>
   );
