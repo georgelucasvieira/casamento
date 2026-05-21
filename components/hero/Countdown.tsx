@@ -52,7 +52,7 @@ export const Countdown = () => {
   }, [target])
 
   return (
-    <section className="w-full h-150 relative
+    <section className="w-full h-100 lg:h-150 relative
         flex justify-center
          text-white text-3xl text-center font-cormorant 
          after:absolute
