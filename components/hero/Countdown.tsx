@@ -52,33 +52,36 @@ export const Countdown = () => {
   }, [target])
 
   return (
-    <section className="w-full font-cormorant flex justify-center h-150 text-white text-3xl text-center relative after:absolute 
-                        after:bg-transparent after:bg-[url(/images/ripped-bg-3.png)] after:bg-no-repeat after:bg-bottom 
-                        after:bg-contain after:w-full after:h-full">
-      <div >
-        <div >
-          <div >Faltam:</div>
-          <div className="flex flex-wrap justify-center gap-10 md:gap-20">
-            <div>
-              <div className="text-5xl md:text-9xl font-cormorant-300" >{timeLeft.months}</div>
-              <div className="mt-1 text-lg md:mt-6">MESES</div>
-            </div>
-            <div>
-              <div className="text-5xl md:text-9xl font-cormorant-300">{timeLeft.days}</div>
-              <div className="mt-1 text-lg md:mt-6">DIAS</div>
-            </div>
-            <div>
-              <div className="text-5xl md:text-9xl font-cormorant-300">{timeLeft.hours}</div>
-              <div className="mt-1 text-lg md:mt-6">HORAS</div>
-            </div>
-            <div>
-              <div className="text-5xl md:text-9xl font-cormorant-300">{timeLeft.minutes}</div>
-              <div className="mt-1 text-lg md:mt-6">MINUTOS</div>
-            </div>
-            <div>
-              <div className="text-5xl md:text-9xl font-cormorant-300">{timeLeft.seconds}</div>
-              <div className="mt-1 text-lg md:mt-6">SEGUNDOS</div>
-            </div>
+    <section className="w-full h-150 relative
+        flex justify-center
+         text-white text-3xl text-center font-cormorant 
+         after:absolute
+         after:bg-transparent after:bg-[url(/images/ripped-bg-3.png)] after:bg-no-repeat after:bg-bottom 
+         after:bg-contain after:w-full after:h-full">
+      <div className="mx-auto w-2/3 flex flex-col justify-start">
+        <div className="">
+          Faltam:
+        </div>
+        <div className="flex flex-wrap items-start justify-center gap-10 md:gap-20">
+          <div>
+            <div className="text-4xl md:text-9xl font-cormorant" >{timeLeft.months}</div>
+            <div className="mt-1 text-sm md:text-lg md:mt-6">MESES</div>
+          </div>
+          <div>
+            <div className="text-4xl md:text-9xl font-cormorant">{timeLeft.days}</div>
+            <div className="mt-1 text-sm md:text-lg md:mt-6">DIAS</div>
+          </div>
+          <div>
+            <div className="text-4xl md:text-9xl font-cormorant">{timeLeft.hours}</div>
+            <div className="mt-1 text-sm md:text-lg md:mt-6">HORAS</div>
+          </div>
+          <div>
+            <div className="text-4xl md:text-9xl font-cormorant">{timeLeft.minutes}</div>
+            <div className="mt-1 text-sm md:text-lg md:mt-6">MINUTOS</div>
+          </div>
+          <div>
+            <div className="text-4xl md:text-9xl font-cormorant">{timeLeft.seconds}</div>
+            <div className="mt-1 text-sm md:text-lg md:mt-6">SEGUNDOS</div>
           </div>
         </div>
       </div>
