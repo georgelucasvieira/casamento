@@ -19,10 +19,13 @@ export default function SaveTheDateSection({ flipcards }: SaveTheDateProps) {
 
   return (
     <section className="relative overflow-hidden bg-white px-10 py-32 lg:px-24">
-      <div className="mx-auto flex md:flex-col-reverse items-center max-w-400 gap-24 md:items-center md:justify-between">
+      <div className="mx-auto max-w-400
+        flex items-center gap-24
+        md:flex-col-reverse md:items-start md:justify-between
+        lg:flex-row">
         {/* LEFT TEXT */}
         <div>
-          <div className="text-[10rem] leading-45 font-cormorant-300 bg-linear-to-l from-[#eee] to-[#111] bg-clip-text text-transparent">
+          <div className="text-[8rem] leading-40 font-cormorant-300 bg-linear-to-l from-[#eee] to-[#111] bg-clip-text text-transparent">
             <div>SAVE</div>
             <div>THE</div>
             <div>DATE!</div>

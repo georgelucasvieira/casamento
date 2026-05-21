@@ -45,7 +45,7 @@ export default function FlipCard({
   }, [initialDelay, imagePool, initialImage, secondImage]);
 
   return (
-    <div className="group relative h-136 w-[18rem] perspective-[2000px]">
+    <div className="group relative h-120 w-[16rem] perspective-[2000px]">
       <div
         className={`
           relative h-full w-full
