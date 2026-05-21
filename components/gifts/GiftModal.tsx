@@ -84,6 +84,20 @@ export default function GiftModal({
             Faça o pagamento
           </button>
 
+          {gift.qrCodeImage && (
+            <div className="mt-8 rounded-3xl bg-white p-6 shadow-sm">
+              <p className="mb-4 text-sm font-semibold">QR Code PIX</p>
+              <img src={gift.qrCodeImage} alt="QRCode PIX" className="mx-auto max-h-64 object-contain" />
+            </div>
+          )}
+
+          {gift.pixCopyPaste && (
+            <div className="mt-8 rounded-3xl bg-white p-6 shadow-sm">
+              <p className="mb-4 text-sm font-semibold">Pix Copia e Cola</p>
+              <pre className="whitespace-pre-wrap break-all text-sm text-black/70">{gift.pixCopyPaste}</pre>
+            </div>
+          )}
+
           {/* PAYMENT ICONS */}
           <div className="mt-10 flex items-center gap-5 text-black/50">
             <span>Mastercard</span>

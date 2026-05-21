@@ -30,6 +30,8 @@ export type Gift = {
   price: string;
   purchased: boolean;
   image: string;
+  qrCodeImage?: string;
+  pixCopyPaste?: string;
 };
 
 export type Guest = {
@@ -72,6 +74,8 @@ const normalizeGift = (row: any) => {
     price: formatPrice(priceNumber),
     purchased: Number(row.purchased) === 1,
     image: row.image || giftImages[id] || "/images/gifts/gift-1.jpg",
+    qrCodeImage: row.qr_code_image ?? undefined,
+    pixCopyPaste: row.pix_copy_paste ?? undefined,
   };
 };
 
@@ -91,7 +95,9 @@ async function ensureSchema() {
       name TEXT NOT NULL,
       price REAL NOT NULL,
       purchased INTEGER DEFAULT 0,
-      image TEXT
+      image TEXT,
+      qr_code_image TEXT,
+      pix_copy_paste TEXT
     )
   `);
 
@@ -105,9 +111,21 @@ async function ensureSchema() {
     )
   `);
 
-  // attempt to add image column if missing (no IF NOT EXISTS for ALTER in sqlite)
+  // attempt to add missing gift columns if they do not exist yet
   try {
     await db.execute("ALTER TABLE gifts ADD COLUMN image TEXT");
+  } catch (e) {
+    // ignore if column exists
+  }
+
+  try {
+    await db.execute("ALTER TABLE gifts ADD COLUMN qr_code_image TEXT");
+  } catch (e) {
+    // ignore if column exists
+  }
+
+  try {
+    await db.execute("ALTER TABLE gifts ADD COLUMN pix_copy_paste TEXT");
   } catch (e) {
     // ignore if column exists
   }
@@ -116,16 +134,22 @@ async function ensureSchema() {
 export async function getGifts() {
   await ensureSchema();
   const result = await db.execute(
-    "SELECT id, name, price, purchased, image FROM gifts ORDER BY id"
+    "SELECT id, name, price, purchased, image, qr_code_image, pix_copy_paste FROM gifts ORDER BY id"
   );
   return result.rows.map(normalizeGift);
 }
 
-export async function createGift(name: string, price: number, image?: string) {
+export async function createGift(
+  name: string,
+  price: number,
+  image?: string,
+  qrCodeImage?: string,
+  pixCopyPaste?: string
+) {
   await ensureSchema();
   const res = await db.execute(
-    "INSERT INTO gifts (name, price, purchased, image) VALUES (?, ?, 0, ?)",
-    [name, price, image || null]
+    "INSERT INTO gifts (name, price, purchased, image, qr_code_image, pix_copy_paste) VALUES (?, ?, 0, ?, ?, ?)",
+    [name, price, image || null, qrCodeImage || null, pixCopyPaste || null]
   );
   const last = res.lastInsertRowid;
   return last ? Number(last) : 0;

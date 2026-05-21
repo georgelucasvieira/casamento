@@ -15,7 +15,9 @@ async function init() {
       name TEXT NOT NULL,
       price REAL NOT NULL,
       purchased INTEGER DEFAULT 0,
-      image TEXT
+      image TEXT,
+      qr_code_image TEXT,
+      pix_copy_paste TEXT
     )
   `);
 
