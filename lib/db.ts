@@ -155,6 +155,14 @@ export async function createGift(
   return last ? Number(last) : 0;
 }
 
+export async function updateGiftPurchased(id: number, purchased: boolean) {
+  await ensureSchema();
+  await db.execute(
+    "UPDATE gifts SET purchased = ? WHERE id = ?",
+    [purchased ? 1 : 0, id]
+  );
+}
+
 export async function getHeroSlots() {
   await ensureSchema();
   const rs = await db.execute("SELECT slot, position, image FROM hero_slots ORDER BY slot, position");

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import GiftCard from "./GiftCard";
 import GiftModal from "./GiftModal";
 import type { Gift } from "@/lib/db";
@@ -10,7 +10,19 @@ interface GiftsGridProps {
 }
 
 export default function GiftsGrid({ gifts }: GiftsGridProps) {
+  const [giftList, setGiftList] = useState<Gift[]>(gifts);
   const [selectedGift, setSelectedGift] = useState<Gift | null>(null);
+
+  useEffect(() => {
+    setGiftList(gifts);
+  }, [gifts]);
+
+  const handleGiftPurchased = (updatedGift: Gift) => {
+    setGiftList((current) =>
+      current.map((gift) => (gift.id === updatedGift.id ? updatedGift : gift))
+    );
+    setSelectedGift(updatedGift);
+  };
 
   return (
     <>
@@ -22,7 +34,7 @@ export default function GiftsGrid({ gifts }: GiftsGridProps) {
           xl:grid-cols-4
         "
       >
-        {gifts.map((gift) => (
+        {giftList.map((gift) => (
           <GiftCard
             key={gift.id}
             gift={gift}
@@ -31,13 +43,17 @@ export default function GiftsGrid({ gifts }: GiftsGridProps) {
         ))}
       </div>
 
-      {gifts.length === 0 && (
+      {giftList.length === 0 && (
         <p className="mt-14 text-center text-xl text-black/50">
           Nenhum presente disponível no momento.
         </p>
       )}
 
-      <GiftModal gift={selectedGift} onClose={() => setSelectedGift(null)} />
+      <GiftModal
+        gift={selectedGift}
+        onClose={() => setSelectedGift(null)}
+        onPurchase={handleGiftPurchased}
+      />
     </>
   );
 }
