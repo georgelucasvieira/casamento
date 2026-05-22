@@ -6,8 +6,6 @@ export default function GiftForm() {
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
   const [imageFile, setImageFile] = useState<File | null>(null);
-  const [qrFile, setQrFile] = useState<File | null>(null);
-  const [pixCopyPaste, setPixCopyPaste] = useState("");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
 
@@ -26,7 +24,6 @@ export default function GiftForm() {
 
     try {
       let imageUrl = null;
-      let qrCodeUrl = null;
 
       if (imageFile) {
         const data = await toDataUrl(imageFile);
@@ -39,17 +36,6 @@ export default function GiftForm() {
         imageUrl = j.url;
       }
 
-      if (qrFile) {
-        const data = await toDataUrl(qrFile);
-        const res = await fetch("/api/admin/upload", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ data }),
-        });
-        const j = await res.json();
-        qrCodeUrl = j.url;
-      }
-
       const create = await fetch("/api/admin/gifts", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -57,8 +43,6 @@ export default function GiftForm() {
           name,
           price: Number(price),
           image: imageUrl,
-          qrCodeImage: qrCodeUrl,
-          pixCopyPaste: pixCopyPaste || null,
         }),
       });
       const cj = await create.json();
@@ -67,8 +51,6 @@ export default function GiftForm() {
         setName("");
         setPrice(0);
         setImageFile(null);
-        setQrFile(null);
-        setPixCopyPaste("");
       } else {
         setMessage("Erro ao criar presente");
       }
@@ -92,20 +74,6 @@ export default function GiftForm() {
       <div>
         <label className="block text-sm font-semibold">Imagem</label>
         <input type="file" accept="image/*" onChange={(e) => setImageFile(e.target.files ? e.target.files[0] : null)} />
-      </div>
-      <div>
-        <label className="block text-sm font-semibold">QR Code para pagamento</label>
-        <input type="file" accept="image/*" onChange={(e) => setQrFile(e.target.files ? e.target.files[0] : null)} />
-      </div>
-      <div>
-        <label className="block text-sm font-semibold">Pix Copia e Cola</label>
-        <textarea
-          value={pixCopyPaste}
-          onChange={(e) => setPixCopyPaste(e.target.value)}
-          className="w-full rounded p-2"
-          rows={3}
-          placeholder="Cole aqui o código Pix"
-        />
       </div>
       <div>
         <button disabled={loading} className="rounded bg-black text-white px-4 py-2">{loading ? "Enviando..." : "Criar presente"}</button>

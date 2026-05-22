@@ -11,7 +11,7 @@ export default async function AdminHeroPage() {
       <section className="px-6 py-24 lg:px-12">
         <div className="mx-auto max-w-5xl">
           <div className="rounded-[2rem] bg-white p-8 shadow">
-            <h1 className="text-2xl font-semibold mb-6">Admin — Hero</h1>
+            <h1 className="text-2xl font-semibold mb-6">Admin Hero</h1>
             <HeroAdmin slots={slots} />
           </div>
         </div>
