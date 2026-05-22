@@ -119,12 +119,18 @@ async function fetchLatestQrCode() {
     return null;
   }
 
-  const row = result.rows[0];
+  const row = result.rows[0] as unknown as {
+    id: number | bigint;
+    qr_code_image_url?: string | null;
+    pix_copy_paste?: string | null;
+    date_created?: string | number | Date | null;
+  };
+
   return {
     id: typeof row.id === "bigint" ? Number(row.id) : row.id,
     qrCodeImageUrl: row.qr_code_image_url ?? undefined,
-    pixPasteCopy: row.pix_paste_copy ?? undefined,
-    dateCreated: String(row.date_created),
+    pixPasteCopy: row.pix_copy_paste ?? undefined,
+    dateCreated: row.date_created ? String(row.date_created) : new Date().toISOString(),
   };
 }
 
@@ -213,7 +219,8 @@ export async function getGifts() {
   const result = await db.execute(
     "SELECT id, name, price, purchased, image FROM gifts ORDER BY id"
   );
-  return result.rows.map((row: GiftRow) => normalizeGift(row, qrCode));
+  const rows = result.rows as unknown as GiftRow[];
+  return rows.map((row) => normalizeGift(row, qrCode));
 }
 
 export async function getLatestQrCode() {
@@ -282,7 +289,8 @@ export async function getGuests() {
   const result = await db.execute(
     "SELECT id, name, confirmed FROM guests ORDER BY name"
   );
-  return result.rows.map((row: GuestRow) => ({
+  const rows = result.rows as unknown as GuestRow[];
+  return rows.map((row) => ({
     id: typeof row.id === "bigint" ? Number(row.id) : row.id,
     name: row.name,
     confirmed: Number(row.confirmed) === 1,

@@ -57,7 +57,7 @@ export default function QrCodeForm({ initialQrCode }: QrCodeFormProps) {
         setCurrentQrCode({
           id: json.id,
           qrCodeImageUrl: qrCodeUrl ?? undefined,
-          pixPasteCopy,
+          pixPasteCopy: pixCopyPaste,
           dateCreated: new Date().toISOString(),
         });
         setQrFile(null);
