@@ -9,16 +9,17 @@ import { usePathname } from "next/navigation";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const currentPath = usePathname()
-  
+
   const paths = {
     home: "/",
     presentes: "/presentes",
     presenca: "/confirmar-presenca",
+    instrucoes: "/instrucoes",
     localizacao: "/localizacao",
   };
 
   const shouldStartWhite = currentPath === paths.home;
-  
+
   const [isTextWhite, setIsTextWhite] = useState(shouldStartWhite)
 
   useEffect(() => {
@@ -43,9 +44,9 @@ export default function Navbar() {
       <header className="fixed top-0 left-0 z-50 w-full">
         <div className={`
             ${isTextWhite
-              ? ""
-              : "lg:bg-white"
-            }
+            ? ""
+            : "lg:bg-white"
+          }
             flex items-center justify-between px-6 py-6 lg:px-12
           `}>
           {/* Logo */}
@@ -90,6 +91,14 @@ export default function Navbar() {
                   "regular pt-2"}
               `}
             >Confirmação</a>
+
+            <a href={paths.instrucoes}
+              className={`
+                ${currentPath === paths.instrucoes ?
+                  "font-cormorant-700 italic text-4xl lowercase" :
+                  "regular pt-2"}
+              `}
+            >Instruções</a>
 
             <a href={paths.localizacao}
               className={`

@@ -10,8 +10,8 @@ export default function MobileMenu({ isOpen }: Props) {
     home: "/",
     presentes: "/presentes",
     presenca: "/confirmar-presenca",
+    instrucoes: "/instrucoes",
     localizacao: "/localizacao",
-    fotos: "/fotos",
   };
 
   var currentPath = usePathname();
@@ -61,15 +61,16 @@ export default function MobileMenu({ isOpen }: Props) {
       >
         <a href={paths.home}
           className={`
-            ${currentPath === paths.home ?
+                ${currentPath === paths.home ?
               "font-cormorant-700 italic text-4xl lowercase py-0" :
               "regular pt-2"}
+
               `}
         >Início</a>
 
         <a href={paths.presentes}
           className={`
-            ${currentPath === paths.presentes ?
+                ${currentPath === paths.presentes ?
               "font-cormorant-700 italic text-4xl lowercase" :
               "regular pt-2"}
               `}
@@ -77,15 +78,27 @@ export default function MobileMenu({ isOpen }: Props) {
 
         <a href={paths.presenca}
           className={`
-            ${currentPath === paths.presenca ?
+                ${currentPath === paths.presenca ?
               "font-cormorant-700 italic text-4xl lowercase" :
               "regular pt-2"}
               `}
         >Confirmação</a>
 
-        <a href={paths.localizacao} className="pt-2">Localização</a>
-        <a href={paths.fotos} className="pt-2">Fotos</a>
-        <a href={paths.home} className="pt-2">História</a>
+        <a href={paths.instrucoes}
+          className={`
+                ${currentPath === paths.instrucoes ?
+              "font-cormorant-700 italic text-4xl lowercase" :
+              "regular pt-2"}
+              `}
+        >Instruções</a>
+
+        <a href={paths.localizacao}
+          className={`
+                ${currentPath === paths.localizacao ?
+              "font-cormorant-700 italic text-4xl lowercase" :
+              "regular pt-2"}
+              `}
+        >Localização</a>
       </div>
     </div>
   );
