@@ -45,34 +45,6 @@ async function init() {
     )
   `);
 
-  // seed guests if empty
-  const guestCount = await db.execute("SELECT COUNT(*) AS count FROM guests");
-  const guests = guestCount.rows[0] as CountRow;
-  const guestTotal = Number(guests?.count ?? guests?.[0] ?? 0);
-  if (guestTotal === 0) {
-    await db.batch([
-      ["INSERT INTO guests(name, confirmed) VALUES (?, ?)", ["Ana", 0]],
-      ["INSERT INTO guests(name, confirmed) VALUES (?, ?)", ["Beatriz", 0]],
-      ["INSERT INTO guests(name, confirmed) VALUES (?, ?)", ["Carla", 0]],
-      ["INSERT INTO guests(name, confirmed) VALUES (?, ?)", ["Daniel", 0]],
-      ["INSERT INTO guests(name, confirmed) VALUES (?, ?)", ["Eduardo", 0]],
-    ]);
-  }
-
-  // seed gifts if empty
-  const giftCount = await db.execute("SELECT COUNT(*) AS count FROM gifts");
-  const gifts = giftCount.rows[0] as CountRow;
-  const giftTotal = Number(gifts?.count ?? gifts?.[0] ?? 0);
-  if (giftTotal === 0) {
-    await db.batch([
-      ["INSERT INTO gifts(name, price, purchased, image) VALUES (?, ?, ?, ?)", ["Arandelas", 90, 1, null]],
-      ["INSERT INTO gifts(name, price, purchased, image) VALUES (?, ?, ?, ?)", ["Travessas e Refratários", 120, 1, null]],
-      ["INSERT INTO gifts(name, price, purchased, image) VALUES (?, ?, ?, ?)", ["Aparelho de Jantar", 600, 0, null]],
-      ["INSERT INTO gifts(name, price, purchased, image) VALUES (?, ?, ?, ?)", ["Passagem Lua de Mel", 2500, 0, null]],
-      ["INSERT INTO gifts(name, price, purchased, image) VALUES (?, ?, ?, ?)", ["Hospedagem Lua de Mel", 1500, 0, null]],
-    ]);
-  }
-
   // seed hero slots (hero slideshow + three flipcards)
   const heroCount = await db.execute("SELECT COUNT(*) AS count FROM hero_slots");
   const hero = heroCount.rows[0] as CountRow;
