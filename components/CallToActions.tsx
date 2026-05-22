@@ -12,9 +12,9 @@ const actions = [
     description: "Escolha um presente e faça parte da nossa celebração.",
   },
   {
-    href: "/localizacao",
-    title: "Localização",
-    description: "Veja onde será a cerimônia e como chegar ao nosso dia.",
+    href: "/instrucoes",
+    title: "Dicas e Instruções",
+    description: "Veja informações sobre o grande dia e não tenha surpresas.",
   },
 ];
 
