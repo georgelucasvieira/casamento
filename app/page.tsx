@@ -3,6 +3,7 @@ import Navbar from "@/components/navbar/Navbar";
 import SaveTheDate from "@/components/save-the-date/SaveTheDate";
 import CallToActions from "@/components/CallToActions";
 import { getHeroSlots } from "@/lib/db";
+import { Localizacao } from "@/components/Localizacao";
 
 export default async function Home() {
   const slots = await getHeroSlots();
@@ -19,7 +20,9 @@ export default async function Home() {
       <Hero heroImages={heroImages} />
       <SaveTheDate flipcards={flipcards} />
       <CallToActions />
-      <div className="w-full h-400 bg-white" />
+      <div className="w-full bg-white">
+          <Localizacao />
+      </div>
     </>
   );
 }
