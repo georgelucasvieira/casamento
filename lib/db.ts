@@ -2,6 +2,7 @@ import dotenv from "dotenv";
 import fs from "fs";
 import path from "path";
 import { createClient } from "@libsql/client";
+import { unstable_noStore } from "next/cache";
 
 dotenv.config({ path: ".env.local" });
 
@@ -229,6 +230,7 @@ async function ensureSchema() {
 }
 
 export async function getGifts() {
+  unstable_noStore();
   await ensureSchema();
   const qrCode = await fetchLatestQrCode();
   const result = await db.execute(

@@ -2,6 +2,8 @@ import GiftsGrid from "@/components/gifts/GiftsGrid";
 import Navbar from "@/components/navbar/Navbar";
 import { getGifts } from "@/lib/db";
 
+export const dynamic = "force-dynamic";
+
 export default async function PresentesPage() {
   const gifts = await getGifts();
 
