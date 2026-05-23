@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface FlipCardProps {
   images: string[];
@@ -21,28 +21,45 @@ export default function FlipCard({
 
   const imagePool = images.length > 0 ? images : ["/images/ptf-6.jpg", "/images/ptf-74.jpg", "/images/ptf-102.jpg"];
 
+  const flippedRef = useRef(false);
+
   useEffect(() => {
-    let timeout: NodeJS.Timeout;
+    flippedRef.current = flipped;
+  }, [flipped]);
 
-    const startLoop = (delay: number) => {
-      timeout = setTimeout(() => {
-        setFlipped((prev) => !prev);
-        const pool = imagePool.length > 0 ? imagePool : [initialImage, secondImage];
-        const randomIndex1 = Math.floor(Math.random() * pool.length);
-        const randomIndex2 = (randomIndex1 + 1) % pool.length;
+  useEffect(() => {
+    let cancelled = false;
 
-        setCurrentImage(pool[randomIndex1]);
-        setCurrentImage2(pool[randomIndex2]);
+    const loop = async () => {
+      while (!cancelled) {
+        const delay = Math.random() * 3500 + 4000;
 
-        const nextRandomDelay = Math.random() * 3500 + 4000;
-        startLoop(nextRandomDelay);
-      }, delay);
+        await new Promise((r) => setTimeout(r, delay));
+
+        const nextFlipped = !flippedRef.current;
+
+        flippedRef.current = nextFlipped;
+        setFlipped(nextFlipped);
+
+        await new Promise((r) => setTimeout(r, 1000));
+
+        const randomImage =
+          imagePool[Math.floor(Math.random() * imagePool.length)];
+
+        if (nextFlipped) {
+          setCurrentImage(randomImage);
+        } else {
+          setCurrentImage2(randomImage);
+        }
+      }
     };
 
-    startLoop(initialDelay);
+    loop();
 
-    return () => clearTimeout(timeout);
-  }, [initialDelay, imagePool, initialImage, secondImage]);
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   return (
     <div className="group relative h-120 w-[16rem] perspective-[2000px]">
