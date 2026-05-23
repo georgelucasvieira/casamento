@@ -5,21 +5,24 @@ import { createClient } from "@libsql/client";
 
 dotenv.config({ path: ".env.local" });
 
-const dbDir = path.join(process.cwd(), "data");
-if (!fs.existsSync(dbDir)) {
-  fs.mkdirSync(dbDir, { recursive: true });
-}
-
-const dbFile = path.join(dbDir, "casamento.db");
 const useLocalDb = process.env.USE_LOCAL_DB !== "false";
+var localDbPath = "";
+
+if (useLocalDb) {
+  const dbDir = path.join(process.cwd(), "data");
+  if (!fs.existsSync(dbDir)) {
+    fs.mkdirSync(dbDir, { recursive: true });
+    localDbPath = path.join(dbDir, "casamento.db");
+  }
+}
 
 export const db = createClient(
   useLocalDb
-    ? { url: `file:${dbFile}` }
+    ? { url: `file:${localDbPath}` }
     : {
-        url: process.env.TURSO_DATABASE_URL!,
-        authToken: process.env.TURSO_AUTH_TOKEN!,
-      }
+      url: process.env.TURSO_DATABASE_URL!,
+      authToken: process.env.TURSO_AUTH_TOKEN!,
+    }
 );
 
 console.log(useLocalDb ? "Utilizando banco de dados local" : "Utilizando banco de dados Turso");
