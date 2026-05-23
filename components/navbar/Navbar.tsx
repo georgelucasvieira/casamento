@@ -57,7 +57,12 @@ export default function Navbar() {
             }
             text-2xl font-light font-cormorant
           `}>
-            AG
+            <img src="/images/monograma.png"
+              className={`${isTextWhite || isOpen
+                ? "invert"
+                : ""
+                } w-12 h-12 cursor-pointer`}
+              onClick={() => { window.location.pathname = "/" }} />
           </div>
 
           {/* Desktop */}

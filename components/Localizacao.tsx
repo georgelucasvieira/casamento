@@ -3,7 +3,6 @@ import Navbar from './navbar/Navbar'
 export const Localizacao = () => {
     return (
         <>
-            <Navbar />
             <section className="px-6 py-24 lg:px-12 font-cormorant">
                 <div className="mx-auto max-w-5xl">
                     <div className="rounded-[2.5rem] px-8 py-12">
@@ -41,6 +40,10 @@ export const Localizacao = () => {
                                     </p>
                                 </div>
                             </div>
+                        </div>
+
+                        <div className='w-full h-200 mt-16'>
+                            <img src="/images/paroquia-aquarela.jpg" alt="Paróquia Santa Genoveva" className='w-full h-full object-contain'/>
                         </div>
 
                         <div className="mt-12 overflow-hidden rounded-[2rem] border border-black/10 shadow-[0_20px_70px_rgba(0,0,0,0.08)]">
