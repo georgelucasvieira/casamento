@@ -1,6 +1,11 @@
 import Navbar from '@/components/navbar/Navbar'
+import { getDressCodeSlots } from '@/lib/db';
 
 export default async function InstrucoesPage() {
+  const slots = await getDressCodeSlots();
+  const dressCodeSlot = slots.dresscode?.map((item) => item.image).filter(Boolean) as string[] | undefined;
+  const dressCodeImage = dressCodeSlot && dressCodeSlot.length > 0 ? dressCodeSlot[0] : "";
+
   return (
     <main className="relative min-h-screen">
       <Navbar />
@@ -22,7 +27,7 @@ export default async function InstrucoesPage() {
               Aos homens, sugerimos trajes compatíveis com a solenidade da ocasião, evitando bermudas, regatas e peças excessivamente informais.
             </div>
           </div>
-          
+
           <div className='w-full text-center'>
             <span className='text-3xl font-cormorant-700'>Traje sugerido: Esporte fino</span>
           </div>
@@ -33,9 +38,9 @@ export default async function InstrucoesPage() {
           Abaixo, inspirações para este dia especial:
         </div>
         <div className='w-full flex flex-col items-center justify-center lg:flex-row'>
-          <img src="/images/dress-code.png" alt="Dress Code" className='md:w-[62%]'/>
+          <img src={dressCodeImage} alt="Dress Code" className='md:w-[62%]' />
         </div>
       </section>
-      <div className='h-25'/>
+      <div className='h-25' />
     </main>);
 }

@@ -292,6 +292,36 @@ export async function getHeroSlots() {
   return slots;
 }
 
+export async function getChurchSlots() {
+  await ensureSchema();
+  const rs = await db.execute("SELECT slot, position, image FROM hero_slots WHERE slot = ? ORDER BY slot, position", ['church']);
+  const rows = rs.rows;
+  const slots: Record<string, Array<{ position: number; image?: string }>> = {};
+  for (const r of rows) {
+    const slotName = String(r.slot);
+    const pos = typeof r.position === "bigint" ? Number(r.position) : Number(r.position ?? 0);
+    const img = r.image as string | null | undefined;
+    if (!slots[slotName]) slots[slotName] = [];
+    slots[slotName].push({ position: pos, image: img ?? undefined });
+  }
+  return slots;
+}
+
+export async function getDressCodeSlots() {
+  await ensureSchema();
+  const rs = await db.execute("SELECT slot, position, image FROM hero_slots WHERE slot = ? ORDER BY slot, position", ['dresscode']);
+  const rows = rs.rows;
+  const slots: Record<string, Array<{ position: number; image?: string }>> = {};
+  for (const r of rows) {
+    const slotName = String(r.slot);
+    const pos = typeof r.position === "bigint" ? Number(r.position) : Number(r.position ?? 0);
+    const img = r.image as string | null | undefined;
+    if (!slots[slotName]) slots[slotName] = [];
+    slots[slotName].push({ position: pos, image: img ?? undefined });
+  }
+  return slots;
+}
+
 export async function updateHeroSlot(slot: string, position: number, image?: string) {
   await ensureSchema();
   // upsert

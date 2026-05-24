@@ -1,6 +1,12 @@
 import Navbar from './navbar/Navbar'
 
-export const Localizacao = () => {
+type LocalizacaoProps = {
+    churchImageSlot?: string[];
+};
+
+export const Localizacao = ({ churchImageSlot }: LocalizacaoProps) => {
+    const churchImage = churchImageSlot && churchImageSlot.length > 0 ? churchImageSlot[0] : "";
+
     return (
         <>
             <section className="px-6 py-24 lg:px-12 font-cormorant">
@@ -9,7 +15,7 @@ export const Localizacao = () => {
 
                         <div className='flex gap-16 justify-center'>
                             <div className='h-full'>
-                                <img src="/images/paroquia-aquarela.jpg" alt="Paróquia Santa Genoveva" className='w-full h-full object-contain rounded-4xl' />
+                                <img src={churchImage} alt="Paróquia Santa Genoveva" className='w-full h-full object-contain rounded-4xl' />
                             </div>
 
                             <div className="flex flex-col gap-12 lg:min-w-100">

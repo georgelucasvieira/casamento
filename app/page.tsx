@@ -13,6 +13,7 @@ export default async function Home() {
     2: slots.flipcard_2?.map((item) => item.image).filter(Boolean) as string[] | undefined,
     3: slots.flipcard_3?.map((item) => item.image).filter(Boolean) as string[] | undefined,
   };
+  const churchImageSlot = slots.church?.map((item) => item.image).filter(Boolean) as string[] | undefined;
 
   return (
     <>
@@ -21,7 +22,7 @@ export default async function Home() {
       <SaveTheDate flipcards={flipcards} />
       <CallToActions />
       <div className="w-full bg-white">
-          <Localizacao />
+          <Localizacao churchImageSlot={churchImageSlot}/>
       </div>
     </>
   );
