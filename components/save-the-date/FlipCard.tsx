@@ -88,7 +88,7 @@ export default function FlipCard({
           continue;
         }
 
-        const delay = 5000;
+        const delay = 2000;
 
         await sleep(delay);
 
