@@ -70,7 +70,7 @@ export default function GuestConfirmation({ initialGuests }: GuestConfirmationPr
               if (selectedGuest) setSelectedGuest(null);
               setStatusMessage(null);
             }}
-            className="mt-4 w-full rounded-3xl px-6 py-5 text-5xl outline-none caret-[#d29e41] text-center"
+            className="mt-4 w-full rounded-3xl sm:px-6 py-5 text-4xl sm:text-5xl outline-none caret-[#d29e41] text-center"
             placeholder="Digite seu nome"
           />
 

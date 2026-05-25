@@ -95,7 +95,7 @@ export default function GiftModal({
             relative  
             w-full max-w-6xl
             rounded-[2.5rem]
-            bg-[#f5f2ee]
+            bg-white
             shadow-2xl
             flex flex-col
           "
@@ -106,7 +106,7 @@ export default function GiftModal({
             <div
               className="
                 flex flex-col justify-center
-                px-10 py-16
+                 pb-4 px-10 pt-16
                 lg:px-20
               "
             >
@@ -123,16 +123,16 @@ export default function GiftModal({
 
               <p
                 className="
-                  mt-12
+                  mt-6 sm:mt-12
                   font-cormorant
-                  text-5xl
+                  text-2xl sm:text-5xl
                   text-black/60
                 "
               >
                 Seu presente: {gift.price}
               </p>
 
-              <div className="mt-10">
+              <div className="mt-5 sm:mt-10">
                 <p className="mb-4 text-sm uppercase tracking-[0.2em] text-black/60">
                   Escolha o método de pagamento
                 </p>
@@ -140,7 +140,7 @@ export default function GiftModal({
                   <button
                     type="button"
                     onClick={() => setSelectedMethod("pix")}
-                    className={`rounded-full border px-6 py-3 text-base font-semibold transition ${selectedMethod === "pix"
+                    className={`rounded-full border px-6 py-3 text-sm sm:text-base font-semibold transition ${selectedMethod === "pix"
                       ? "border-black bg-black text-white"
                       : "border-black/20 bg-white text-black hover:border-black"
                       }`}
@@ -150,12 +150,12 @@ export default function GiftModal({
                 </div>
               </div>
 
-              <div className="mt-10">
+              <div className="mt-5 sm:mt-10">
                 <button
                   type="button"
                   disabled={!selectedMethod || gift.purchased}
                   onClick={handleRealizarPagamento}
-                  className="rounded-full border border-black/30 bg-black px-10 py-4 font-cormorant text-3xl italic text-white transition-all duration-300 disabled:cursor-not-allowed disabled:opacity-50"
+                  className="rounded-full border border-black/30 bg-black px-10 py-4 font-cormorant text-xl sm:text-3xl italic text-white transition-all duration-300 disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   Realizar pagamento
                 </button>
@@ -186,13 +186,13 @@ export default function GiftModal({
                 <img
                   src={gift.qrCodeImage}
                   alt="QR Code PIX"
-                  className="mt-4 mx-auto w-full max-w-70 object-contain"
+                  className="sm:mt-4 mx-auto w-full max-w-70 object-contain"
                 />
               ) : (
                 <p className="mt-4 text-sm text-center text-black/50">QR code não fornecido para este presente.</p>
               )}
 
-              <div className="mt-4 flex items-center justify-between">
+              <div className="sm:mt-4 flex items-center justify-between">
                 <p className="text-sm w-full text-center uppercase tracking-[0.2em] text-black/50">Pix Copia e Cola</p>
                 <button
                   type="button"
@@ -203,19 +203,19 @@ export default function GiftModal({
                   {copyStatus === "copied" ? "Copiado" : "Copiar"}
                 </button>
               </div>
-              <pre className="mt-4 whitespace-pre-wrap break-all rounded-3xl bg-white p-4 text-sm text-black/70">{gift.pixCopyPaste || "Nenhum código Pix disponível."}</pre>
+              <pre className="sm:mt-4 whitespace-pre-wrap break-all rounded-3xl bg-white p-4 text-sm text-black/70">{gift.pixCopyPaste || "Nenhum código Pix disponível."}</pre>
 
-              <div className="my-12 flex flex-col gap-3">
+              <div className="sm:my-12 flex flex-col items-center gap-3">
                 <button
                   type="button"
                   onClick={handleConfirmPayment}
                   disabled={gift.purchased || paymentConfirmed || loadingPayment}
-                  className="rounded-full bg-black px-8 py-4 text-white transition-all duration-300 disabled:cursor-not-allowed disabled:opacity-50"
+                  className="rounded-full bg-black px-8 py-4 text-white font-cormorant text-xl transition-all duration-300 disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   {paymentConfirmed ? "Pagamento registrado" : loadingPayment ? "Registrando..." : "Realizei o pagamento"}
                 </button>
 
-                <p className="text-sm text-black/60">
+                <p className="text-sm text-black/60 text-justify w-[86%]">
                   Depois de finalizar o PIX, clique em "Realizei o pagamento" para registrar o presente.
                 </p>
               </div>

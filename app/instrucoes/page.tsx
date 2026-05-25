@@ -9,7 +9,7 @@ export default async function InstrucoesPage() {
   return (
     <main className="relative min-h-screen">
       <Navbar />
-      <section className="mt-40 px-6 lg:px-12 font-cormorant text-2xl text-center">
+      <section className="mt-35 px-6 lg:px-12 font-cormorant text-2xl text-center">
         <div className="w-full mx-auto max-w-250 flex flex-col gap-16 items-center justify-center">
           <div className='w-full flex flex-col items-center justify-center'>
             <div>Queridos convidados,</div>
@@ -29,11 +29,11 @@ export default async function InstrucoesPage() {
           </div>
 
           <div className='w-full text-center'>
-            <span className='text-3xl font-cormorant-700'>Traje sugerido: Esporte fino</span>
+            <span className='text-2xl sm:text-3xl font-cormorant-700'>Traje sugerido: Esporte fino</span>
           </div>
         </div>
       </section>
-      <section className="mt-50 px-6 lg:px-12 flex flex-col gap-6 items-center justify-center font-cormorant text-2xl text-center">
+      <section className="mt-20 sm:mt-50 px-6 lg:px-12 flex flex-col gap-6 items-center justify-center font-cormorant text-2xl text-center">
         <div className='w-full text-center text-'>
           Abaixo, inspirações para este dia especial:
         </div>
