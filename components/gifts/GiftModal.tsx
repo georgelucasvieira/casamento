@@ -56,11 +56,6 @@ export default function GiftModal({
 
   if (!gift) return null;
 
-  const handleRealizarPagamento = () => {
-    if (!selectedMethod) return;
-    setShowPaymentDetails(true);
-  };
-
   const handleCopyPix = async () => {
     if (!gift.pixCopyPaste) return;
 
@@ -115,13 +110,16 @@ export default function GiftModal({
       className="
         fixed inset-0 z-50
         bg-black/30
-        p-6
         backdrop-blur-md
         overflow-y-auto
       "
       onClick={onClose}
     >
-      <div className="flex min-h-full justify-center p-6 py-10">
+      <div className={`flex min-h-full justify-center py-10 
+        ${selectedMethod !== "card"
+          ? "p-6"
+          : "p-4"}
+        `}>
         <div
           className="
             relative
@@ -136,11 +134,11 @@ export default function GiftModal({
           <div className="w-full flex">
             {/* CONTENT */}
             <div
-              className="
+              className={`
                 flex flex-col justify-center
                 pb-4 px-10 pt-16
                 lg:px-20
-              "
+              `}
             >
               <h2
                 className="
@@ -175,12 +173,12 @@ export default function GiftModal({
                     onClick={() =>
                       setSelectedMethod("pix")
                     }
-                    className={`rounded-full border px-6 py-3 text-sm sm:text-base font-semibold transition ${selectedMethod === "pix"
-                        ? "border-black bg-black text-white"
-                        : "border-black/20 bg-white text-black hover:border-black"
+                    className={`w-24 h-12 border rounded-3xl lg:w-auto lg:h-auto lg:rounded-full lg:px-6 lg:py-3 text-sm sm:text-base font-semibold transition ${selectedMethod === "pix"
+                      ? "border-black bg-black text-white"
+                      : "border-black/20 bg-white text-black hover:border-black"
                       }`}
                   >
-                    PIX
+                    <p>PIX</p>
                   </button>
 
                   <button
@@ -188,9 +186,9 @@ export default function GiftModal({
                     onClick={() =>
                       setSelectedMethod("card")
                     }
-                    className={`rounded-full border px-6 py-3 text-sm sm:text-base font-semibold transition ${selectedMethod === "card"
-                        ? "border-black bg-black text-white"
-                        : "border-black/20 bg-white text-black hover:border-black"
+                    className={`w-36 h-12 border rounded-3xl lg:w-auto lg:h-auto lg:rounded-full lg:px-6 lg:py-3 text-sm sm:text-base font-semibold transition ${selectedMethod === "card"
+                      ? "border-black bg-black text-white"
+                      : "border-black/20 bg-white text-black hover:border-black"
                       }`}
                   >
                     Cartão / Boleto
@@ -199,20 +197,74 @@ export default function GiftModal({
               </div>
 
               {selectedMethod === "pix" && (
-                <div className="mt-5 sm:mt-10">
-                  <button
-                    type="button"
-                    disabled={
-                      !selectedMethod ||
-                      gift.purchased
-                    }
-                    onClick={
-                      handleRealizarPagamento
-                    }
-                    className="rounded-full border border-black/30 bg-black px-10 py-4 font-cormorant text-xl sm:text-3xl italic text-white transition-all duration-300 disabled:cursor-not-allowed disabled:opacity-50"
-                  >
-                    Realizar pagamento
-                  </button>
+                <div className="w-full mx-auto max-w-100 py-6">
+                  <p className="text-sm text-center uppercase tracking-[0.2em] text-black/50">
+                    QR Code
+                  </p>
+
+                  {gift.qrCodeImage ? (
+                    <img
+                      src={gift.qrCodeImage}
+                      alt="QR Code PIX"
+                      className="sm:mt-4 mx-auto w-full max-w-70 object-contain"
+                    />
+                  ) : (
+                    <p className="mt-4 text-sm text-center text-black/50">
+                      QR code não fornecido para este presente.
+                    </p>
+                  )}
+
+                  <div className="sm:mt-4 flex items-center justify-center gap-2">
+                    <p className="text-sm text-center uppercase tracking-[0.15em] text-black/50">
+                      Pix Copia e Cola
+                    </p>
+
+                    <button
+                      type="button"
+                      onClick={handleCopyPix}
+                      disabled={!gift.pixCopyPaste}
+                      className="rounded-xl border border-black/20 bg-white px-2 py-1 text-sm transition hover:border-black disabled:cursor-not-allowed disabled:opacity-50"
+                    >
+                      {copyStatus === "copied"
+                        ? "Copiado"
+                        : "Copiar"}
+                    </button>
+                  </div>
+
+                  <pre className="sm:mt-4 whitespace-pre-wrap break-all rounded-3xl bg-white p-4 text-sm text-black/70">
+                    {gift.pixCopyPaste ||
+                      "Nenhum código Pix disponível."}
+                  </pre>
+
+                  {copyStatus === "copied" && (
+                    <div className="my-3 sm:my-12 flex flex-col items-center gap-3">
+                      <button
+                        type="button"
+                        onClick={
+                          handleConfirmPayment
+                        }
+                        disabled={
+                          gift.purchased ||
+                          paymentConfirmed ||
+                          loadingPayment
+                        }
+                        className="rounded-3xl bg-black px-8 py-4 text-white text-sm transition-all duration-300 disabled:cursor-not-allowed disabled:opacity-50"
+                      >
+                        {paymentConfirmed
+                          ? "Pagamento registrado"
+                          : loadingPayment
+                            ? "Registrando..."
+                            : "Realizei o pagamento"}
+                      </button>
+
+                      <p className="mt-3 text-sm text-black/60 text-justify w-[86%]">
+                        Depois de finalizar o PIX,
+                        clique em "Realizei o pagamento"
+                        para registrar o presente.
+                      </p>
+                    </div>
+                  )}
+
                 </div>
               )}
 
@@ -231,76 +283,6 @@ export default function GiftModal({
                 </div>
               )}
             </div>
-
-            {/* PIX DETAILS */}
-            {showPaymentDetails && (
-              <div className="w-full mx-auto max-w-100 p-6">
-                <p className="text-sm text-center uppercase tracking-[0.2em] text-black/50">
-                  QR Code
-                </p>
-
-                {gift.qrCodeImage ? (
-                  <img
-                    src={gift.qrCodeImage}
-                    alt="QR Code PIX"
-                    className="sm:mt-4 mx-auto w-full max-w-70 object-contain"
-                  />
-                ) : (
-                  <p className="mt-4 text-sm text-center text-black/50">
-                    QR code não fornecido para este presente.
-                  </p>
-                )}
-
-                <div className="sm:mt-4 flex items-center justify-between">
-                  <p className="text-sm w-full text-center uppercase tracking-[0.2em] text-black/50">
-                    Pix Copia e Cola
-                  </p>
-
-                  <button
-                    type="button"
-                    onClick={handleCopyPix}
-                    disabled={!gift.pixCopyPaste}
-                    className="rounded-full border border-black/20 bg-white px-4 py-2 text-sm transition hover:border-black disabled:cursor-not-allowed disabled:opacity-50"
-                  >
-                    {copyStatus === "copied"
-                      ? "Copiado"
-                      : "Copiar"}
-                  </button>
-                </div>
-
-                <pre className="sm:mt-4 whitespace-pre-wrap break-all rounded-3xl bg-white p-4 text-sm text-black/70">
-                  {gift.pixCopyPaste ||
-                    "Nenhum código Pix disponível."}
-                </pre>
-
-                <div className="sm:my-12 flex flex-col items-center gap-3">
-                  <button
-                    type="button"
-                    onClick={
-                      handleConfirmPayment
-                    }
-                    disabled={
-                      gift.purchased ||
-                      paymentConfirmed ||
-                      loadingPayment
-                    }
-                    className="rounded-full bg-black px-8 py-4 text-white font-cormorant text-xl transition-all duration-300 disabled:cursor-not-allowed disabled:opacity-50"
-                  >
-                    {paymentConfirmed
-                      ? "Pagamento registrado"
-                      : loadingPayment
-                        ? "Registrando..."
-                        : "Realizei o pagamento"}
-                  </button>
-
-                  <p className="text-sm text-black/60 text-justify w-[86%]">
-                    Depois de finalizar o PIX,
-                    clique em "Realizei o pagamento"
-                    para registrar o presente.
-                  </p>
-                </div>
-              </div>
-            )}
           </div>
 
           {/* CLOSE */}
@@ -325,6 +307,6 @@ export default function GiftModal({
             )}
         </div>
       </div>
-    </div>
+    </div >
   );
 }

@@ -58,3 +58,8 @@ h2 {
   transform: rotateY(180deg);
 }
 
+#paymentBrick_container form {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+

@@ -73,7 +73,7 @@ type GiftRow = {
 
 type GiftMigrationRow = {
   qr_code_image?: string | null;
-  pix_copy_paste?: string | null;
+  pix_paste_copy?: string | null;
 };
 
 type GuestRow = {
@@ -138,35 +138,34 @@ async function fetchLatestQrCode() {
   const row = result.rows[0] as unknown as {
     id: number | bigint;
     qr_code_image_url?: string | null;
-    pix_copy_paste?: string | null;
+    pix_paste_copy?: string | null;
     date_created?: string | number | Date | null;
   };
-
   return {
     id: typeof row.id === "bigint" ? Number(row.id) : row.id,
     qrCodeImageUrl: row.qr_code_image_url ?? undefined,
-    pixPasteCopy: row.pix_copy_paste ?? undefined,
+    pixPasteCopy: row.pix_paste_copy ?? undefined,
     dateCreated: row.date_created ? String(row.date_created) : new Date().toISOString(),
   };
 }
 
 async function migrateGiftQrCodeFields() {
   const hasQrCodeColumn = await hasColumn("gifts", "qr_code_image");
-  const hasPixColumn = await hasColumn("gifts", "pix_copy_paste");
+  const hasPixColumn = await hasColumn("gifts", "pix_paste_copy");
 
   if (!hasQrCodeColumn && !hasPixColumn) {
     return;
   }
 
   const existingQrCode = await db.execute(
-    "SELECT qr_code_image, pix_copy_paste FROM gifts WHERE qr_code_image IS NOT NULL OR pix_copy_paste IS NOT NULL ORDER BY id DESC LIMIT 1"
+    "SELECT qr_code_image, pix_paste_copy FROM gifts WHERE qr_code_image IS NOT NULL OR pix_paste_copy IS NOT NULL ORDER BY id DESC LIMIT 1"
   );
 
   if (existingQrCode.rows.length) {
     const row = existingQrCode.rows[0] as GiftMigrationRow;
     await db.execute(
       "INSERT INTO qr_code (qr_code_image_url, pix_paste_copy) VALUES (?, ?)",
-      [row.qr_code_image ?? null, row.pix_copy_paste ?? null]
+      [row.qr_code_image ?? null, row.pix_paste_copy ?? null]
     );
   }
 
