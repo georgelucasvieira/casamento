@@ -86,7 +86,7 @@ export default function GuestConfirmation({ initialGuests }: GuestConfirmationPr
                   key={guest.id}
                   type="button"
                   onClick={() => handleSelect(guest)}
-                  className="mx-auto mb-3 block w-6/10 rounded-3xl px-4 py-3 text-left text-2xl transition hover:bg-black/5 cursor-pointer"
+                  className="mx-auto mb-3 block w-full alg:w-6/10 rounded-3xl lg:px-4 lg:py-3 text-left text-2xl transition hover:bg-black/5 cursor-pointer"
                 >
                   <span className="font-medium text-black">{guest.name}</span>
                   <span className="ml-3 text-sm text-black/50">

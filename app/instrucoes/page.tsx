@@ -8,6 +8,9 @@ export default async function InstrucoesPage() {
 
   return (
     <main className="relative min-h-screen">
+      <div className="lg:hidden absolute w-full top-0 left-0 -translate-y-10 text-2xl font-cormorant-700 font-bold text-center">
+        Instruções
+      </div>
       <Navbar />
       <section className="mt-35 px-6 lg:px-12 font-cormorant text-2xl text-center">
         <div className="w-full mx-auto max-w-250 flex flex-col gap-16 items-center justify-center">
