@@ -14,7 +14,7 @@ export default function GiftCard({
         rounded-4xl
         border border-black/5
         bg-[#ffffff70]
-        p-8
+        p-4 sm:p-8
         shadow-[0_10px_40px_rgba(0,0,0,0.08)]
         backdrop-blur-md
         transition-all duration-500
@@ -30,7 +30,7 @@ export default function GiftCard({
           loading="lazy"
           decoding="async"
           className="
-            h-56 w-full object-cover
+            h-36 w-36 sm:h-56 sm:w-56 object-cover
             transition-transform duration-700
             group-hover:scale-105
           "
@@ -38,10 +38,10 @@ export default function GiftCard({
       </div>
 
       {/* CONTENT */}
-      <div className="pt-8 text-center">
+      <div className="pt-4 text-center">
         <h3
           className="
-            text-xl uppercase
+            text-sm sm:text-xl uppercase
             tracking-[0.15em]
             text-black/90
           "
@@ -49,7 +49,7 @@ export default function GiftCard({
           {gift.title}
         </h3>
 
-        <p className="mt-6 text-3xl font-semibold text-black">
+        <p className="mt-3 sm:mt-6 text-lg sm:text-3xl font-semibold text-black">
           {gift.price}
         </p>
 
@@ -58,11 +58,11 @@ export default function GiftCard({
           onClick={onClick}
           disabled={gift.purchased}
           className="
-            mt-8 rounded-full
+            mt-4 sm:mt-8 rounded-full
             border border-black/30
-            px-10 py-4
+            px-5 sm:px-10 py-2 sm:py-4
             font-cormorant
-            text-3xl italic
+            text-lg sm:text-3xl italic
             transition-all duration-300
 
             hover:bg-black hover:text-white
