@@ -20,7 +20,7 @@ const actions = [
 
 export default function CallToActions() {
   return (
-    <section className="bg-[#f8f4ef] px-6 py-12 lg:py-16 sm:px-10 lg:px-24">
+    <section className="bg-[#f8f4ef] px-6 py-6 lg:py-16 sm:px-10 lg:px-24">
       <div className="mx-auto max-w-7xl">
         <div className="grid gap-3 lg:gap-6 lg:grid-cols-3">
           {actions.map((action) => (

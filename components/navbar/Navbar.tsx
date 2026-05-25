@@ -25,7 +25,10 @@ export default function Navbar() {
   useEffect(() => {
     if (currentPath === paths.home) {
       const handleScroll = () => {
-        setIsTextWhite(window.scrollY <= 1200)
+        if(window.innerWidth < 400)
+          setIsTextWhite(window.scrollY <= 1150)
+        else
+          setIsTextWhite(window.scrollY <= 1200)
       }
 
       handleScroll()
