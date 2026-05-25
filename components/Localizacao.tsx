@@ -9,7 +9,7 @@ export const Localizacao = ({ churchImageSlot }: LocalizacaoProps) => {
 
     return (
         <>
-            <section className="px-6 py-16 lg:px-12 mt-6 font-cormorant">
+            <section className="px-6 py-16 lg:px-12 font-cormorant">
                 <div className="mx-auto max-w-7xl">
                     <div className="rounded-[2.5rem] px-8">
 
