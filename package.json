@@ -11,8 +11,9 @@
   },
   "dependencies": {
     "@libsql/client": "^0.17.3",
-    "cloudinary": "^1.32.0",
+    "@mercadopago/sdk-react": "^1.0.7",
     "better-sqlite3": "^12.10.0",
+    "cloudinary": "^1.32.0",
     "date-fns": "^4.2.1",
     "dotenv": "^17.4.2",
     "next": "16.2.6",
@@ -28,7 +29,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.2.6",
     "tailwindcss": "^4",
-    "typescript": "^5",
-    "tsx": "^4.22.0"
+    "tsx": "^4.22.0",
+    "typescript": "^5"
   }
 }
