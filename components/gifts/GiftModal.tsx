@@ -26,6 +26,8 @@ export default function GiftModal({
     "idle" | "copied"
   >("idle");
 
+  const [showPaymentConfirmation, setShowPaymentConfirmation] = useState(false);
+
   const [loadingPayment, setLoadingPayment] =
     useState(false);
 
@@ -64,6 +66,7 @@ export default function GiftModal({
     );
 
     setCopyStatus("copied");
+    setShowPaymentConfirmation(true);
 
     window.setTimeout(() => {
       setCopyStatus("idle");
@@ -236,7 +239,7 @@ export default function GiftModal({
                       "Nenhum código Pix disponível."}
                   </pre>
 
-                  {copyStatus === "copied" && (
+                  {showPaymentConfirmation && (
                     <div className="my-3 sm:my-12 flex flex-col items-center gap-3">
                       <button
                         type="button"
