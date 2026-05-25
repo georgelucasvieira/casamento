@@ -1,4 +1,3 @@
-// components/payments/MercadoPagoBrick.tsx
 "use client";
 
 import {
@@ -7,18 +6,23 @@ import {
 } from "@mercadopago/sdk-react";
 
 initMercadoPago(
-  process.env.NEXT_PUBLIC_MP_PUBLIC_KEY!
+  process.env.NEXT_PUBLIC_MP_PUBLIC_KEY!,
+  {
+    locale: "pt-BR",
+  }
 );
 
 interface Props {
   amount: number;
+  giftId: number;
 }
 
 export default function MercadoPagoBrick({
   amount,
+  giftId,
 }: Props) {
   return (
-    <div className="mt-8">
+    <div className="w-full max-w-140">
       <Payment
         initialization={{
           amount,
@@ -30,26 +34,47 @@ export default function MercadoPagoBrick({
             ticket: "all",
           },
         }}
+        locale="pt-BR"
         onSubmit={async ({ formData }) => {
-          console.log(formData);
-
-          // sem backend
-          // sem webhook
-          // apenas simula sucesso
-
-          alert(
-            "Pagamento enviado ao Mercado Pago."
+          const res = await fetch(
+            "/api/mercadopago",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type":
+                  "application/json",
+              },
+              body: JSON.stringify({
+                formData,
+                amount,
+                giftId,
+              }),
+            }
           );
 
-          return new Promise((resolve) => {
-            setTimeout(resolve, 1000);
-          });
+          const data = await res.json();
+
+          console.log(data);
+
+          return data;
         }}
         onReady={() => {
-          console.log("Brick ready");
+          console.log("Brick pronto");
         }}
         onError={(error) => {
-          console.error(error);
+          // erros de validação do brick
+          // normalmente acontecem enquanto o usuário digita
+
+          if (
+            error?.type === "non_critical"
+          ) {
+            return;
+          }
+
+          console.warn(
+            "Mercado Pago Brick:",
+            error
+          );
         }}
       />
     </div>

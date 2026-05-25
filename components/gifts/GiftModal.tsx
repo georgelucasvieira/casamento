@@ -175,11 +175,10 @@ export default function GiftModal({
                     onClick={() =>
                       setSelectedMethod("pix")
                     }
-                    className={`rounded-full border px-6 py-3 text-sm sm:text-base font-semibold transition ${
-                      selectedMethod === "pix"
+                    className={`rounded-full border px-6 py-3 text-sm sm:text-base font-semibold transition ${selectedMethod === "pix"
                         ? "border-black bg-black text-white"
                         : "border-black/20 bg-white text-black hover:border-black"
-                    }`}
+                      }`}
                   >
                     PIX
                   </button>
@@ -189,11 +188,10 @@ export default function GiftModal({
                     onClick={() =>
                       setSelectedMethod("card")
                     }
-                    className={`rounded-full border px-6 py-3 text-sm sm:text-base font-semibold transition ${
-                      selectedMethod === "card"
+                    className={`rounded-full border px-6 py-3 text-sm sm:text-base font-semibold transition ${selectedMethod === "card"
                         ? "border-black bg-black text-white"
                         : "border-black/20 bg-white text-black hover:border-black"
-                    }`}
+                      }`}
                   >
                     Cartão / Boleto
                   </button>
@@ -219,8 +217,9 @@ export default function GiftModal({
               )}
 
               {selectedMethod === "card" && (
-                <div className="mt-10">
+                <div className="">
                   <MercadoPagoBrick
+                    giftId={gift.id}
                     amount={Number(
                       gift.price
                         .replace("R$", "")
@@ -290,8 +289,8 @@ export default function GiftModal({
                     {paymentConfirmed
                       ? "Pagamento registrado"
                       : loadingPayment
-                      ? "Registrando..."
-                      : "Realizei o pagamento"}
+                        ? "Registrando..."
+                        : "Realizei o pagamento"}
                   </button>
 
                   <p className="text-sm text-black/60 text-justify w-[86%]">
