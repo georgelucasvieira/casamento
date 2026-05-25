@@ -24,6 +24,10 @@ export default async function Home() {
       <div className="w-full bg-white">
           <Localizacao churchImageSlot={churchImageSlot}/>
       </div>
+      <footer className="w-full h-40 bg-white text-center py-20 font-cormorant text-xl text-black/70">
+       <p>www.auroraegeorge.com.br</p> 
+       <p>Desenvolvido por: George (o noivo)</p>
+      </footer>
     </>
   );
 }

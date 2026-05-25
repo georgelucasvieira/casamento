@@ -7,9 +7,9 @@ type SaveTheDateProps = {
 };
 
 const defaultFlipcards: Record<number, string[]> = {
-  1: ["/images/ptf-6.jpg", "/images/ptf-74.jpg", "/images/ptf-102.jpg"],
-  2: ["/images/ptf-74.jpg", "/images/ptf-102.jpg", "/images/ptf-132.jpg"],
-  3: ["/images/ptf-102.jpg", "/images/ptf-6.jpg", "/images/ptf-74.jpg"],
+  1: ["/images/ptf-6.jpg", "/images/ptf-74.jpg", "/images/ptf-108.jpg"],
+  2: ["/images/ptf-74.jpg", "/images/ptf-108.jpg", "/images/ptf-132.jpg"],
+  3: ["/images/ptf-108.jpg", "/images/ptf-6.jpg", "/images/ptf-74.jpg"],
 };
 
 export default function SaveTheDateSection({ flipcards }: SaveTheDateProps) {
@@ -20,10 +20,10 @@ export default function SaveTheDateSection({ flipcards }: SaveTheDateProps) {
   return (
     <section className="relative overflow-hidden bg-white px-10 pb-10 lg:px-24">
       <div className="mx-auto
-        flex flex-col-reverse items-center gap-24
+        flex flex-col items-center gap-16 lg:gap-24
         md:justify-center lg:flex-col">
         {/* LEFT TEXT */}
-        <div className="text-5xl font-cormorant-300 bg-linear-to-l from-[#dcdcdc] to-[#111] bg-clip-text text-transparent">
+        <div className="text-4xl lg:text-5xl text-center font-cormorant-300 bg-linear-to-l from-[#dcdcdc] to-[#111] bg-clip-text text-transparent">
           De todos os destinos, o nosso
         </div>
 

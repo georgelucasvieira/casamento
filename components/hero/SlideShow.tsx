@@ -15,7 +15,7 @@ export default function SlideShow({ images }: SlideShowProps) {
     if (slideshowImages.length <= 1) return;
     const interval = setInterval(() => {
       setIndex((current) => (current + 1) % slideshowImages.length);
-    }, 6000);
+    }, 3000);
     return () => clearInterval(interval);
   }, [slideshowImages.length]);
 

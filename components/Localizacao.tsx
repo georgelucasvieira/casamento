@@ -9,46 +9,50 @@ export const Localizacao = ({ churchImageSlot }: LocalizacaoProps) => {
 
     return (
         <>
-            <section className="px-6 py-24 lg:px-12 font-cormorant">
+            <section className="px-6 py-16 lg:px-12 font-cormorant">
                 <div className="mx-auto max-w-7xl">
-                    <div className="rounded-[2.5rem] px-8 py-12">
+                    <div className="rounded-[2.5rem] px-8">
 
-                        <div className='flex gap-16 justify-center'>
-                            <div className='h-full'>
+                        <div className='flex gap-8 justify-center'>
+                            <div className='h-full hidden lg:block'>
                                 <img src={churchImage} alt="Paróquia Santa Genoveva" className='w-full h-full object-contain rounded-4xl' />
                             </div>
 
-                            <div className="flex flex-col gap-12 lg:min-w-100">
+                            <div className="flex flex-col gap-4 lg:min-w-100">
                                 <div>
-                                    <p className="text-sm uppercase tracking-[0.35em] text-black/50">
-                                        Localização
-                                    </p>
-                                    <span className="mt-6 text-6xl font-semibold text-black">
-                                        Onde será o casamento
+                                    <span className="mt-6 text-4xl font-bold text-black">
+                                        Localização da Cerimônia
                                     </span>
-                                    <p className="mt-6 max-w-2xl text-lg text-black/70">
-                                        Nosso casamento será celebrado na Paróquia Santa Genoveva em Goiânia com Missa.
-                                    </p>
+                                </div>
+
+                                <div className='h-full block lg:hidden'>
+                                    <img src={churchImage} alt="Paróquia Santa Genoveva" className='w-full h-full object-contain rounded-4xl' />
                                 </div>
 
                                 <div className="rounded-4xl bg-white p-8 shadow-[0_15px_40px_rgba(0,0,0,0.08)]">
                                     <div>
-                                        <p className="text-sm uppercase tracking-[0.25em] text-black/40">
+                                        <p className="text-sm uppercase tracking-[0.25em] text-black">
                                             Endereço
                                         </p>
-                                        <h2 className="mt-4 text-3xl font-semibold text-black">
-                                            Av. Brasil, Santa Genoveva
-                                        </h2>
-                                        <p className="mt-3 text-lg text-black/70">
-                                            Goiânia, Goiás 74670-010 • 18:00
+                                        <span className="mt-4 text-3xl font-semibold text-black">
+                                            Paróquia Santa Genoveva, Av. Brasil, s/n, Setor Santa Genoveva
+                                        </span>
+                                        <p className="mt-3 text-lg text-black">
+                                            Goiânia, Goiás
+                                        </p>
+                                        <p className="mt-3 text-2xl font-bold text-black/70">
+                                            Dia 08 de Agosto 2026 às 17:30
                                         </p>
                                     </div>
+                                </div>
+
+                                <div className="mt-3 rounded-4xl bg-white p-8 shadow-[0_15px_40px_rgba(0,0,0,0.08)]">
                                     <div>
-                                        <p className="text-sm uppercase tracking-[0.25em] text-black/40">
+                                        <p className="text-sm uppercase tracking-[0.25em] text-black">
                                             Observação
                                         </p>
-                                        <p className="mt-3 text-lg text-black/70">
-                                            A celebração será realizada pontualmente com o Padre, favor chegar com antecedência.
+                                        <p className="text-lg text-black/70">
+                                            A cerimônia terá início pontualmente. Pedimos a gentileza de se programarem para chegar com antecedência.
                                         </p>
                                     </div>
                                 </div>

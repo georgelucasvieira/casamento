@@ -19,7 +19,7 @@ export default function FlipCard({
   const [currentImage, setCurrentImage] = useState(initialImage);
   const [currentImage2, setCurrentImage2] = useState(secondImage);
 
-  const imagePool = images.length > 0 ? images : ["/images/ptf-6.jpg", "/images/ptf-74.jpg", "/images/ptf-102.jpg"];
+  const imagePool = images.length > 0 ? images : ["/images/ptf-6.jpg", "/images/ptf-74.jpg", "/images/ptf-108.jpg"];
 
   const flippedRef = useRef(false);
 
