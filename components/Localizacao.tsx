@@ -9,7 +9,7 @@ export const Localizacao = ({ churchImageSlot }: LocalizacaoProps) => {
 
     return (
         <>
-            <section className="px-6 py-16 lg:px-12 font-cormorant">
+            <section className="px-6 py-16 lg:px-12 mt-6 font-cormorant">
                 <div className="mx-auto max-w-7xl">
                     <div className="rounded-[2.5rem] px-8">
 
@@ -18,9 +18,9 @@ export const Localizacao = ({ churchImageSlot }: LocalizacaoProps) => {
                                 <img src={churchImage} alt="Paróquia Santa Genoveva" className='w-full h-full object-contain rounded-4xl' />
                             </div>
 
-                            <div className="flex flex-col gap-4 lg:min-w-100">
+                            <div className="flex flex-col items-center gap-4 lg:min-w-100">
                                 <div>
-                                    <span className="mt-6 text-4xl font-bold text-black">
+                                    <span className="w-full mt-6 text-2xl text-center lg:text-4xl lg:text-start font-bold text-black">
                                         Localização da Cerimônia
                                     </span>
                                 </div>
