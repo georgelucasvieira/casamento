@@ -332,6 +332,7 @@ export async function updateHeroSlot(slot: string, position: number, image?: str
 }
 
 export async function getGuests() {
+  unstable_noStore();
   const result = await db.execute(
     "SELECT id, name, confirmed FROM guests ORDER BY name"
   );
