@@ -9,6 +9,7 @@ interface GuestConfirmationProps {
 
 export default function GuestConfirmation({ initialGuests }: GuestConfirmationProps) {
   const [query, setQuery] = useState("");
+  const [guests, setGuests] = useState(initialGuests);
   const [selectedGuest, setSelectedGuest] = useState<Guest | null>(null);
   const [statusMessage, setStatusMessage] = useState<string | null>(null);
   const [isSaving, setIsSaving] = useState(false);
@@ -16,7 +17,7 @@ export default function GuestConfirmation({ initialGuests }: GuestConfirmationPr
   const suggestions = useMemo(() => {
     const normalized = query.trim().toLowerCase();
     if (!normalized) return [];
-    return initialGuests.filter((guest) =>
+    return guests.filter((guest) =>
       guest.name.toLowerCase().includes(normalized)
     );
   }, [initialGuests, query]);
@@ -45,7 +46,15 @@ export default function GuestConfirmation({ initialGuests }: GuestConfirmationPr
         throw new Error("Falha ao salvar");
       }
 
-      setSelectedGuest({ ...selectedGuest, confirmed });
+      const updatedGuest = { ...selectedGuest, confirmed };
+
+      setSelectedGuest(updatedGuest);
+
+      setGuests((prev) =>
+        prev.map((guest) =>
+         guest.id === updatedGuest.id ? updatedGuest : guest
+        )
+      );
       setStatusMessage(
         confirmed
           ? "Presença confirmada com sucesso!"
