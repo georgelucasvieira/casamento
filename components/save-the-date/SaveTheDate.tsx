@@ -7,9 +7,9 @@ type SaveTheDateProps = {
 };
 
 const defaultFlipcards: Record<number, string[]> = {
-  1: ["/images/ptf-6.jpg", "/images/ptf-74.jpg", "/images/ptf-108.jpg"],
-  2: ["/images/ptf-74.jpg", "/images/ptf-108.jpg", "/images/ptf-132.jpg"],
-  3: ["/images/ptf-108.jpg", "/images/ptf-6.jpg", "/images/ptf-74.jpg"],
+  1: ["/images/flipcard_1_1.jpg", "/images/flipcard_1_2.jpg"],
+  2: ["/images/flipcard_2_1.jpg", "/images/flipcard_2_2.jpg"],
+  3: ["/images/flipcard_3_1.jpg", "/images/flipcard_3_2.jpg"],
 };
 
 export default function SaveTheDateSection({ flipcards }: SaveTheDateProps) {

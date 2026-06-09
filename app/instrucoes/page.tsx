@@ -2,9 +2,6 @@ import Navbar from '@/components/navbar/Navbar'
 import { getDressCodeSlots } from '@/lib/db';
 
 export default async function InstrucoesPage() {
-  const slots = await getDressCodeSlots();
-  const dressCodeSlot = slots.dresscode?.map((item) => item.image).filter(Boolean) as string[] | undefined;
-  const dressCodeImage = dressCodeSlot && dressCodeSlot.length > 0 ? dressCodeSlot[0] : "";
 
   return (
     <main className="relative min-h-screen">
@@ -41,7 +38,7 @@ export default async function InstrucoesPage() {
           Abaixo, inspirações para este dia especial:
         </div>
         <div className='w-full flex flex-col items-center justify-center lg:flex-row'>
-          <img src={dressCodeImage} alt="Dress Code" className='md:w-[62%]' />
+          <img src="/images/dresscode.jpg" alt="Dress Code" className='md:w-[62%]' />
         </div>
       </section>
       <div className='h-25' />

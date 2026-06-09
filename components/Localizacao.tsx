@@ -1,11 +1,8 @@
 import Navbar from './navbar/Navbar'
 
-type LocalizacaoProps = {
-    churchImageSlot?: string[];
-};
 
-export const Localizacao = ({ churchImageSlot }: LocalizacaoProps) => {
-    const churchImage = churchImageSlot && churchImageSlot.length > 0 ? churchImageSlot[0] : "";
+export const Localizacao = () => {
+    const churchImage = "/images/church.jpg";
 
     return (
         <>

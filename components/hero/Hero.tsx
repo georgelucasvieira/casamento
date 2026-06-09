@@ -3,11 +3,9 @@
 import { Countdown } from "./Countdown";
 import SlideShow from "./SlideShow";
 
-type HeroProps = {
-  heroImages?: string[];
-};
 
-export default function Hero({ heroImages }: HeroProps) {
+export default function Hero() {
+  let heroImages = ["/images/hero_1.jpg", "/images/hero_2.jpg", "/images/hero_3.jpg"];
   return (
     <>
       <section className="flex flex-col w-full h-screen justify-center text-center items-center">
