@@ -38,7 +38,7 @@ export default async function InstrucoesPage() {
           Abaixo, inspirações para este dia especial:
         </div>
         <div className='w-full flex flex-col items-center justify-center lg:flex-row'>
-          <img src="/images/dresscode.jpg" alt="Dress Code" className='md:w-[62%]' />
+          <img src="/images/dresscode.png" alt="Dress Code" className='md:w-[62%]' />
         </div>
       </section>
       <div className='h-25' />
